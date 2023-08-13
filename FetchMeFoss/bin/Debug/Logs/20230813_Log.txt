@@ -1,0 +1,206 @@
+2023-08-13 09:19:18.0065 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](T config, String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 239
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 09:31:09.0689 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](T config, String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 239
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 09:32:22.5219 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](T config, String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 239
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 09:40:50.1675 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategy(FileStream fileStream, String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](T config, String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 240
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 09:49:27.1000 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategy(FileStream fileStream, String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](T config, String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 240
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 09:49:36.5515 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategy(FileStream fileStream, String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](T config, String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 240
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 09:50:25.6988 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategy(FileStream fileStream, String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](T config, String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 240
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 09:54:56.8723 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 238
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 09:56:52.2753 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 238
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 09:58:07.7759 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 238
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 10:03:54.0979 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 237
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 10:04:12.5156 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 237
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 10:05:55.5256 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 237
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 10:07:11.9838 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 237
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 10:08:25.0401 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 237
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 10:08:42.4888 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 237
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 10:08:45.3769 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 237
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 10:08:57.9866 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 237
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 10:10:58.8442 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 237
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 10:11:04.9818 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 237
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 10:13:16.4545 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 237
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 10:14:16.9839 - Error Initializing Config file., System.IO.FileNotFoundException: Could not find file 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'.
+File name: 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at CommonLibrary.SerializationActions.LoadConfigFile[T](String appendingString, String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 237
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 10:57:08.0839 - Error Initializing Config file., System.IO.IOException: The filename, directory name, or volume label syntax is incorrect. : 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\file:\C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windowsFetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategy(FileStream fileStream, String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.StreamWriter.ValidateArgsAndOpenPath(String path, Boolean append, Encoding encoding, Int32 bufferSize)
+   at System.IO.File.CreateText(String path)
+   at CommonLibrary.SerializationActions.SaveConfigFile[T](String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 196
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 28
+2023-08-13 11:58:11.6738 - Error Initializing Config file., System.IO.IOException: The filename, directory name, or volume label syntax is incorrect. : 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\file:\C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windowsFetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategy(FileStream fileStream, String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.StreamWriter.ValidateArgsAndOpenPath(String path, Boolean append, Encoding encoding, Int32 bufferSize)
+   at System.IO.File.CreateText(String path)
+   at CommonLibrary.SerializationActions.SaveConfigFile[T](String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 196
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 38
+2023-08-13 12:02:46.1150 - Error Initializing Config file., System.IO.IOException: The filename, directory name, or volume label syntax is incorrect. : 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\file:\C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windowsFetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategy(FileStream fileStream, String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.StreamWriter.ValidateArgsAndOpenPath(String path, Boolean append, Encoding encoding, Int32 bufferSize)
+   at System.IO.File.CreateText(String path)
+   at CommonLibrary.SerializationActions.SaveConfigFile[T](String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 196
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 38
+2023-08-13 12:11:01.7645 - Error Initializing Config file., System.IO.IOException: The filename, directory name, or volume label syntax is incorrect. : 'C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\file:\C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\bin\Debug\net6.0-windows\FetchMeFoss_Config.xml'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategy(FileStream fileStream, String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.StreamWriter.ValidateArgsAndOpenPath(String path, Boolean append, Encoding encoding, Int32 bufferSize)
+   at System.IO.File.CreateText(String path)
+   at CommonLibrary.SerializationActions.SaveConfigFile[T](String fileType) in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Serialization.cs:line 196
+   at CommonLibrary.Initialization`1..ctor() in C:\Users\Xen\source\repos\CommonLibrary\CommonLibrary\Initialization.cs:line 38
