@@ -1,60 +1,46 @@
-using CommonLibrary;
 using System.Data;
-using System.Reflection;
+using CommonLibrary;
 
 namespace FetchMeFoss
 {
+    // todo 3;
     public partial class FetchMeFoss : Form
     {
-        private Initialization<Configuration> _init;
+        private Init.Initialization<Configuration> _init;
         private MainProcessing _proc;
+        // todo 3;
         public FetchMeFoss()
         {
             InitializeComponent();
-
-            _init = new Initialization<Configuration>();
-            if (_init != null)
-            {
-                tbDownloadPath.Text = _init.Configuration?.DownloadPath;
-                FillDataTableFromConfiguration();
-            }
+            ApplicationSetup();
         }
-
-        private void FillDataTableFromConfiguration()
+        // todo 3;
+        private void ApplicationSetup()
         {
-            DataTable fossTable = new DataTable();
-            fossTable.Columns.Add("Title");
-            fossTable.Columns.Add("Url");
-            fossTable.Columns.Add("WebPage");
-
-            foreach (FossInfo fossDownload in _init.Configuration.FossDownloadData)
+            // Initialize the config file and logger
+            _init = new Init.Initialization<Configuration>();
+            if (_init != null && _init.Configuration != null)
             {
-                // Some foss items could have more than one potential download link
-                foreach (string differentFossDownload in fossDownload.FossUrls)
-                {
-                    DataRow dRow = fossTable.NewRow();
-                    dRow["Title"] = fossDownload.FossTitle;
-                    dRow["Url"] = differentFossDownload;
-                    dRow["WebPage"] = fossDownload.FossWebPage;
-                    fossTable.Rows.Add(dRow);
-                }
+                tbDownloadPath.Text = _init.Configuration.DownloadPath;
+                _proc = new MainProcessing(_init);
+                dgvFossInfo.DataSource = _proc.BuildDataTableFromConfiguration();
             }
-
-            dgvFossInfo.DataSource = fossTable;
         }
-
+        // todo 3;
         private void EnableDisableFields(bool enable)
         {
             tbDownloadPath.Enabled = enable;
             dgvFossInfo.Enabled = enable;
             btnDownload.Enabled = enable;
         }
-
-        private void btnDownload_Click(object sender, EventArgs e)
+        // todo 3;
+        private async void btnDownload_Click(object sender, EventArgs e)
         {
-
+            // todo 1; asnyc void for this? no idea if it'll work
             EnableDisableFields(false);
-            _proc = new MainProcessing(_init);
+
+            await _proc.BeginDownload();
+
             EnableDisableFields(true);
         }
 

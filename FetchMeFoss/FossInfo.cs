@@ -1,5 +1,6 @@
 ﻿namespace FetchMeFoss
 {
+    // todo 3;
     public struct FossInfo
     {
         public string FossTitle { get; set; }
