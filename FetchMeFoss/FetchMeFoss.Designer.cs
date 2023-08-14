@@ -42,7 +42,7 @@
             // 
             dgvFossInfo.AllowUserToOrderColumns = true;
             dgvFossInfo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFossInfo.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dgvFossInfo.EditMode = DataGridViewEditMode.EditOnF2;
             dgvFossInfo.Location = new Point(63, 107);
             dgvFossInfo.Name = "dgvFossInfo";
             dgvFossInfo.RowTemplate.Height = 25;
