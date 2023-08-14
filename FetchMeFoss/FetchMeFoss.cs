@@ -38,7 +38,7 @@ namespace FetchMeFoss
         {
             // todo 1; asnyc void for this? no idea if it'll work
             EnableDisableFields(false);
-
+            //_proc.CompareCurrentTableWithConfig((DataTable)dgvFossInfo.DataSource);
             await _proc.BeginDownload();
 
             EnableDisableFields(true);

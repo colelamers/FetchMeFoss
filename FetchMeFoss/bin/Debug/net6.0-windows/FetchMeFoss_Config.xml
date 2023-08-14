@@ -240,5 +240,5 @@
             <FossWebPage/>
         </FossInfo>
     </FossDownloadData>
-    <DownloadPath>C:\\users\\xen\\downloads</DownloadPath>
+    <DownloadPath>C:\users\xen\downloads\</DownloadPath>
 </Configuration>
