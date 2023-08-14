@@ -6,7 +6,13 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <PackageIcon>FetchMeFoss-sm.png</PackageIcon>
+    <ApplicationIcon>FetchMeFoss.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="FetchMeFoss.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="CommonLibrary">

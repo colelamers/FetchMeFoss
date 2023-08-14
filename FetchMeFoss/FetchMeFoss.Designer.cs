@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FetchMeFoss));
             dgvFossInfo = new DataGridView();
             btnDownload = new Button();
             tbDownloadPath = new TextBox();
@@ -100,6 +101,7 @@
             Controls.Add(tbDownloadPath);
             Controls.Add(btnDownload);
             Controls.Add(dgvFossInfo);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FetchMeFoss";
             Text = "Fetch Me Foss";
             ((System.ComponentModel.ISupportInitialize)dgvFossInfo).EndInit();
