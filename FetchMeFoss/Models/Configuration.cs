@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FetchMeFoss
+namespace FetchMeFoss.Models
 {
     // todo 3;
     public class Configuration
     {
-        public List<FossInfo> FossDownloadData { get; set; } 
+        public List<SoftwareInfo> FossDownloadData { get; set; }
         public string DownloadPath { get; set; }
 
         // todo 3;
-        public Configuration() 
+        public Configuration()
         {
-            FossDownloadData = new List<FossInfo>();
+            FossDownloadData = new List<SoftwareInfo>();
             DownloadPath = string.Empty;
         }
     }

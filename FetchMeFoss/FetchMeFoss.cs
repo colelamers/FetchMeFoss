@@ -1,13 +1,15 @@
 using System.Data;
 using CommonLibrary;
+using FetchMeFoss.Controllers;
+using FetchMeFoss.Models;
 
 namespace FetchMeFoss
 {
     // todo 3;
     public partial class FetchMeFoss : Form
     {
-        private Init.Initialization<Configuration> _init;
-        private MainProcessing _proc;
+        private Init.Initialization<Configuration>? _init;
+        private MainProcessing? _proc;
         // todo 3;
         public FetchMeFoss()
         {
@@ -19,12 +21,16 @@ namespace FetchMeFoss
         {
             // Initialize the config file and logger
             _init = new Init.Initialization<Configuration>();
-            if (_init != null && _init.Configuration != null)
+            
+            if (_init == null)
             {
-                tbDownloadPath.Text = _init.Configuration.DownloadPath;
-                _proc = new MainProcessing(_init);
-                dgvFossInfo.DataSource = _proc.BuildDataTableFromConfiguration();
+                MessageBox.Show("Fatal Error: Init.Initialization failed! Exiting App!");
+                Application.Exit();
             }
+
+            _proc = new MainProcessing(_init);
+            tbDownloadPath.Text = _init.Configuration.DownloadPath;
+            dgvFossInfo.DataSource = _proc.BuildDataTableFromConfiguration();
         }
         // todo 3;
         private void EnableDisableFields(bool enable)
@@ -40,10 +46,7 @@ namespace FetchMeFoss
             EnableDisableFields(false);
             //_proc.CompareCurrentTableWithConfig((DataTable)dgvFossInfo.DataSource);
             await _proc.BeginDownload();
-
             EnableDisableFields(true);
         }
-
-
     }
 }
