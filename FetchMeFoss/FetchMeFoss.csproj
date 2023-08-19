@@ -7,11 +7,11 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <PackageIcon>FetchMeFoss-sm.png</PackageIcon>
-    <ApplicationIcon>FetchMeFoss.ico</ApplicationIcon>
+    <ApplicationIcon>Icons\fmf.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="FetchMeFoss.ico" />
+    <Content Include="Icons\fmf.ico" />
   </ItemGroup>
 
   <ItemGroup>
