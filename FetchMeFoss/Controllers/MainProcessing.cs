@@ -6,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using CommonLibrary;
-using FetchMeFoss.Interfaces;
+using FetchMeFoss.Concretes;
 using FetchMeFoss.Models;
 
 namespace FetchMeFoss.Controllers
@@ -24,6 +24,8 @@ namespace FetchMeFoss.Controllers
         // todo 3;
         public DataTable BuildDataTableFromConfiguration()
         {
+            _init.Logging.Log("BuildDataTableFromConfiguration called...");
+
             _fossTable.Columns.Add("Title");
             _fossTable.Columns.Add("Url");
             _fossTable.Columns.Add("WebPage");
@@ -44,7 +46,7 @@ namespace FetchMeFoss.Controllers
             return _fossTable;
         }
         //todo 3; 
-        public void CompareCurrentTableWithConfig(DataTable dgvTableSource)
+/*        public void CompareCurrentTableWithConfig(DataTable dgvTableSource)
         {
             // todo 4; try to implement this eventually. seems a tad complicated (not difficult) atm.
             // just update the config file for now.
@@ -64,26 +66,36 @@ namespace FetchMeFoss.Controllers
                     }
                 }
             }
-        }
+        }*/
         // todo 3;
         public async Task BeginDownload()
         {
-            List<Task> downloadTasks = new List<Task>();
-            // todo 1; do i really need a task? maybe to run them all at once
-            foreach (SoftwareInfo fossDownload in _init.Configuration.FossDownloadData)
+            _init.Logging.Log("BeginDownload called...");
+
+            try
             {
-                // Some foss items could have more than one potential download link
-                foreach (string differentFossDownload in fossDownload.ExecutableLinks)
+                List<Task> downloadTasks = new List<Task>();
+                // todo 1; do i really need a task? maybe to run them all at once
+                foreach (SoftwareInfo fossDownload in _init.Configuration.FossDownloadData)
                 {
-                    downloadTasks.Add(DownloadPage(differentFossDownload, fossDownload));
+                    // Some foss items could have more than one potential download link
+                    // todo 1; don't iterate here, iterate in DownloadExecutable
+                    downloadTasks.Add(DownloadExecutable(fossDownload));
+                    // todo 1; add every which way something can get download in here.
                 }
+                await Task.WhenAll(downloadTasks);
+            }
+            catch (Exception ex)
+            {
+                _init.Logging.Log("BeginDownload Error", ex);
             }
 
-            await Task.WhenAll(downloadTasks);
         }
         // todo 3;
-        private async Task DownloadPage(string url, SoftwareInfo fossDownload)
+        private async Task DownloadExecutable(SoftwareInfo fossDownload)
         {
+            _init.Logging.Log("DownloadExecutable called...");
+
             // The await operator is what causes a pause in the Task.WhenAll occurs.
             // This makes every application "Wait" until it's finished downloading
             // before it starts another one. If you remove the "await Task.Delay(1)"
@@ -92,45 +104,46 @@ namespace FetchMeFoss.Controllers
             // user confusion that the app is finished running when it is not.
             await Task.Delay(1);
             // todo 2; webclient bad?
-            Uri uri = new Uri(url);
-            string fileName = Path.GetFileNameWithoutExtension(url);
-            string fileExtension = Path.GetExtension(url);
-            string downloadFileFullLocation = _init.Configuration.DownloadPath + fileName + fileExtension;
-
-            using (HttpClient client = new HttpClient())
+            try
             {
-                using (Stream? fileDownload = await client.GetStreamAsync(uri))
+                foreach (string differentFossDownload in fossDownload.ExecutableLinks)
                 {
-                    // todo 1; this snippet lets me dynamically address type for the interface.
-                    // making it easier to cast based off of the name only.
-                    Type k = FossDataConstants.FossItemType[fossDownload.ApplicationTitle.ToLower()];
-                    FossInterface foInt = (FossInterface)Activator.CreateInstance(k);
-
-                    // todo 1; this code was tested on the krita site. it's good for parsing in general.
-                    if (!string.IsNullOrEmpty(fossDownload.LinkToDownloadPage))
+                    // todo 1; make loop keep interating until a successful download.
+                    // once successful, stop searching
+                    string softwareKey = fossDownload.ApplicationTitle.ToLower().Replace(" ", "");
+                    bool isKey = FossDataConstants.FossItemType.TryGetValue(
+                        softwareKey, out var fossItemType);
+                    if (isKey)
                     {
-                        var x = await client.GetStringAsync(new Uri(fossDownload.LinkToDownloadPage));
-                        var y = x.Split(new string[] { ".exe" }, StringSplitOptions.None);
-                        foreach (string exe in y)
+                        Uri uri = new Uri(fossDownload.LinkToDownloadPage);
+                        Type interType = FossDataConstants.FossItemType[softwareKey];
+                        var fossInterface = (FossActions?)Activator.CreateInstance(
+                            interType, fossDownload);
+                        if (fossInterface != null)
                         {
-                            string appendExe = ".exe";
-                            int httpsIndex = exe.LastIndexOf("https://");
-                            if (httpsIndex > 0)
-                            {
-                                int substringLength = exe.Length - httpsIndex;
-                                string executableHref = exe.Substring(httpsIndex, substringLength);
-                                string fullExecLink = executableHref + appendExe;
-                            }
+                            var x = await fossInterface.ParseHtmlForDownloadLink(uri);
                         }
-                    }
-
-                    using (Stream fs = new FileStream(downloadFileFullLocation, FileMode.CreateNew))
-                    {
-                        // fileDownload.CopyTo(fs); // synchronous downloads
-                        await fileDownload.CopyToAsync(fs); // asyncronous downloads
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                _init.Logging.Log("Error", ex);
+            }
+            /*
+
+            string fileName = Path.GetFileNameWithoutExtension(url);
+            string fileExtension = Path.GetExtension(url);
+            string downloadFileFullLocation = _init.Configuration.DownloadPath + fileName + fileExtension;
+            using (Stream? fileDownload = await client.GetStreamAsync(uri))
+                {
+                    using (Stream fs = new FileStream(downloadFileFullLocation, FileMode.CreateNew))
+                    {
+                        // fileDownload.CopyTo(fs);         // synchronous downloads
+                        await fileDownload.CopyToAsync(fs); // asyncronous downloads
+                    }
+                }
+            */
         }
         // todo 1; need function that performs search of html relative url and pulls that file
         // todo 1; need function that finds the most recent/up-to-date file and downloads it.
