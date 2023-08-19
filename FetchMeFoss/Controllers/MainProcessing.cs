@@ -24,13 +24,13 @@ namespace FetchMeFoss.Controllers
         // todo 3;
         public DataTable BuildDataTableFromConfiguration()
         {
-            _init.Logging.Log("BuildDataTableFromConfiguration called...");
+            _init.Logger.Log("BuildDataTableFromConfiguration called...");
 
             _fossTable.Columns.Add("Title");
             _fossTable.Columns.Add("Url");
             _fossTable.Columns.Add("WebPage");
 
-            foreach (SoftwareInfo fossDownload in _init.Configuration.FossDownloadData)
+            foreach (SoftwareConfigInfo fossDownload in _init.Configuration.FossDownloadData)
             {
                 // Some foss items could have more than one potential download link
                 foreach (string differentFossDownload in fossDownload.ExecutableLinks)
@@ -42,7 +42,6 @@ namespace FetchMeFoss.Controllers
                     _fossTable.Rows.Add(dRow);
                 }
             }
-
             return _fossTable;
         }
         //todo 3; 
@@ -70,13 +69,13 @@ namespace FetchMeFoss.Controllers
         // todo 3;
         public async Task BeginDownload()
         {
-            _init.Logging.Log("BeginDownload called...");
+            _init.Logger.Log("BeginDownload called...");
 
             try
             {
                 List<Task> downloadTasks = new List<Task>();
                 // todo 1; do i really need a task? maybe to run them all at once
-                foreach (SoftwareInfo fossDownload in _init.Configuration.FossDownloadData)
+                foreach (SoftwareConfigInfo fossDownload in _init.Configuration.FossDownloadData)
                 {
                     // Some foss items could have more than one potential download link
                     // todo 1; don't iterate here, iterate in DownloadExecutable
@@ -87,14 +86,14 @@ namespace FetchMeFoss.Controllers
             }
             catch (Exception ex)
             {
-                _init.Logging.Log("BeginDownload Error", ex);
+                _init.Logger.Log("BeginDownload Error", ex);
             }
 
         }
         // todo 3;
-        private async Task DownloadExecutable(SoftwareInfo fossDownload)
+        private async Task DownloadExecutable(SoftwareConfigInfo fossDownload)
         {
-            _init.Logging.Log("DownloadExecutable called...");
+            _init.Logger.Log("DownloadExecutable called...");
 
             // The await operator is what causes a pause in the Task.WhenAll occurs.
             // This makes every application "Wait" until it's finished downloading
@@ -117,18 +116,17 @@ namespace FetchMeFoss.Controllers
                     {
                         Uri uri = new Uri(fossDownload.LinkToDownloadPage);
                         Type interType = FossDataConstants.FossItemType[softwareKey];
-                        var fossInterface = (FossActions?)Activator.CreateInstance(
-                            interType, fossDownload);
-                        if (fossInterface != null)
+                        var fossAction = Activator.CreateInstance(interType, fossDownload);
+                        if (fossAction != null)
                         {
-                            var x = await fossInterface.ParseHtmlForDownloadLink(uri);
+                          //  var x = await fossAction.ParseHtmlForDownloadLink(uri);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                _init.Logging.Log("Error", ex);
+                _init.Logger.Log("Error", ex);
             }
             /*
 

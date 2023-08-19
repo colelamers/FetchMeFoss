@@ -1,7 +1,7 @@
 ﻿namespace FetchMeFoss.Models
 {
     // todo 3;
-    public struct SoftwareInfo
+    public struct SoftwareConfigInfo
     {
         public string ApplicationTitle { get; set; }
         public List<string> ExecutableLinks { get; set; }

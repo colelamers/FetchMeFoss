@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace FetchMeFoss.Models
 {
-    // todo 4; potential for an abstract class here. unknown if necessary yet.
-    // abstract because interface was too simple for the needs of this
+    // todo 3;
     public abstract class FossActions
     {
-        public SoftwareInfo SoftwareItem { get; protected set; }
+        public SoftwareConfigInfo SoftwareItem { get; protected set; }
 
         /**
-         * virtual because sometimes html parsing can vary, but not always
+         * virtuals because sometimes html parsing can vary and you may
+         * need to override
          * todo 3;
          */
         public virtual async Task<string> ParseHtmlForDownloadLink(Uri siteLink)
@@ -38,10 +39,21 @@ namespace FetchMeFoss.Models
             return fullExecLink;
         }
 
-        public virtual async Task<string> ParseForCurrentVersion()
+        public virtual async Task<string> ParseForCurrentVersion(Uri siteLink)
         {
-            // todo 1;
-            return "";
+            string fullExecLink = string.Empty;
+            using (HttpClient client = new HttpClient())
+            {
+                string rawHtml = await client.GetStringAsync(siteLink);
+                Regex rgx = new Regex("/([0-9]{1,4})+?" +     // Major
+                                    "(\\.([0-9]{1,4}))+?" +   // Minor
+                                    "(\\.([0-9]{1,4}))?" +    // Patch
+                                    "(\\.([0-9]{1,4}))?" +    // Build
+                                    "(\\.([0-9]{1,4}))?/gi"); // Etc.
+                string[] lis = rgx.Split(rawHtml);
+
+            }
+            return fullExecLink;
         }
     }
 }

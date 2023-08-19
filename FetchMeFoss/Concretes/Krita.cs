@@ -1,6 +1,7 @@
 ﻿using FetchMeFoss.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,31 +10,38 @@ namespace FetchMeFoss.Concretes
 {
     public class Krita : FossActions
     {
-        public Krita(SoftwareInfo si) 
+        // todo 4; privatize these?
+        public List<Uri>? ExecutableLinks { get; private set; }
+        public Uri? LinkToDownloadPage { get; private set; }
+        public Uri? CdnDownloadLink { get; private set; }
+        public Uri? UniqueDownloadLink { get; private set; }
+        public Krita(SoftwareConfigInfo sci) 
         { 
-            SoftwareItem = si;
-        }
-        // todo 3;
-        public override async Task<string> ParseHtmlForDownloadLink(Uri siteLink)
-        {
-            string fullExecLink = string.Empty;
-            using (HttpClient client = new HttpClient())
+            SoftwareItem = sci;
+
+            if (!string.IsNullOrEmpty(sci.LinkToDownloadPage))
             {
-                string rawHtml = await client.GetStringAsync(siteLink);
-                string[] pageExecs = rawHtml.Split(new string[] { ".exe" }, StringSplitOptions.None);
-                foreach (string unparsedExec in pageExecs)
+                this.LinkToDownloadPage = new Uri(sci.LinkToDownloadPage.ToString());
+            }
+
+            if (!string.IsNullOrEmpty(sci.CdnDownloadLink))
+            {
+                this.CdnDownloadLink = new Uri(sci.CdnDownloadLink.ToString());
+            }
+
+            if (!string.IsNullOrEmpty(sci.UniqueDownloadLink))
+            {
+                this.UniqueDownloadLink = new Uri(sci.UniqueDownloadLink.ToString());
+            }
+
+            if (sci.ExecutableLinks.Count > 0)
+            {
+                this.ExecutableLinks = new List<Uri>();
+                foreach (string url in sci.ExecutableLinks)
                 {
-                    string appendExe = ".exe";
-                    int httpsIndex = unparsedExec.LastIndexOf("https://");
-                    if (httpsIndex > 0)
-                    {
-                        int substringLength = unparsedExec.Length - httpsIndex;
-                        string executableHref = unparsedExec.Substring(httpsIndex, substringLength);
-                        fullExecLink = executableHref + appendExe;
-                    }
+                    this.ExecutableLinks.Add(new Uri(url));
                 }
             }
-            return fullExecLink;
         }
     }
 }

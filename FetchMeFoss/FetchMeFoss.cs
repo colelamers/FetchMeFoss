@@ -21,7 +21,6 @@ namespace FetchMeFoss
         {
             // Initialize the config file and logger
             _init = new Init.Initialization<Configuration>();
-            
             if (_init == null)
             {
                 MessageBox.Show("Fatal Error: Init.Initialization failed! Exiting App!");

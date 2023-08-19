@@ -9,6 +9,7 @@ namespace FetchMeFoss.Models
         public static Dictionary<string, Type> FossItemType = new Dictionary<string, Type>
         {
             //{"7zip", typeof(SevenZip) },
+            //{"7z", typeof(SevenZip) },
            // {"sevenzip", typeof(SevenZip) },
            // {"ableton", typeof(Ableton) },
            // {"anki", typeof(Anki) },

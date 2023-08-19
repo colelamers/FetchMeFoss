@@ -9,8 +9,8 @@ namespace FetchMeFoss.Concretes
 {
     public class Audacity : FossActions
     {
-        public SoftwareInfo SoftwareItem { get; private set; }
-        public Audacity(SoftwareInfo si)
+        public SoftwareConfigInfo SoftwareItem { get; private set; }
+        public Audacity(SoftwareConfigInfo si)
         {
             SoftwareItem = si;
         }
