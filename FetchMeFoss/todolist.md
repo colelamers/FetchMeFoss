@@ -5,3 +5,5 @@
 # todo 1; add more try catches
 # todo 1; i'd like to have this app run through the download installers too
 #		  could possibly add to the config zip links too and manually extract!
+# todo 1; add checkbox for software person wants to download and update config file?
+# todo 1; add logging for failures
