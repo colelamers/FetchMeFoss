@@ -3,12 +3,12 @@ using FetchMeFoss.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace FetchMeFoss.Concretes
 {
+    // todo 3;
     public class Git : FossInterface
     {
         public SoftwareConfigInfo SoftwareItem { get; set; }
@@ -19,29 +19,28 @@ namespace FetchMeFoss.Concretes
             SoftwareItem = sci;
             _init = initialization;
         }
-
-        public async Task<string> ParseHtmlForDownloadLink(HttpClient client, Uri siteLink)
+        // todo 3;
+        public void UpdateSoftwareConfigInfo(string nVersion)
         {
-            if (siteLink != null)
-            {
-                string fullExecLink = string.Empty;
-                string rawHtml = await client.GetStringAsync(siteLink);
-                string[] pageExecs = rawHtml.Split(
-                    new string[] { SoftwareItem.FileType }, StringSplitOptions.None);
-                foreach (string unparsedExec in pageExecs)
-                {
-                    // todo 2; may need to revise this to pull non-https items
-                    int httpsIndex = unparsedExec.LastIndexOf("https://");
-                    if (httpsIndex > 0)
-                    {
-                        int substringLength = unparsedExec.Length - httpsIndex;
-                        string executableHref = unparsedExec.Substring(httpsIndex,
-                                                                        substringLength);
-                        return executableHref + SoftwareItem.FileType;
-                    }
-                }
-            }
-            return string.Empty;
+            Regex rgx = new Regex("([0-9]?[0-9]?[0-9]?[0-9]?" +
+                                "\\.[0-9]?[0-9]?[0-9]?[0-9]?" +
+                                "\\.?[0-9]?[0-9]?[0-9]?[0-9]?" +
+                                "\\.?[A-z]*" +
+                                "\\.?[0-9]?[0-9]?[0-9]?[0-9]?[/])",
+                                RegexOptions.IgnoreCase);
+
+            SoftwareConfigInfo sci = SoftwareItem;
+
+            string windows = ".windows";
+            string gitForWinVersionDirName = rgx.Split(sci.UriPathToExec)[1];
+            // Update the struct with new version data and quit searching
+            sci.UriPathToExec = sci.UriPathToExec.Replace(gitForWinVersionDirName, nVersion);
+            // todo 4; limitiation in current code, defaulting to first hotfix version
+            //         should resolve some day, but v1 should guarantee me a version always
+            sci.UriPathToExec = sci.UriPathToExec + windows + ".1/";
+            sci.FileName = sci.FileName.Replace(sci.VersionNo, nVersion);
+            sci.VersionNo = nVersion;
+            SoftwareItem = sci;
         }
     }
 }

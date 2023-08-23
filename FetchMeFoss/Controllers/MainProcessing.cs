@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using CommonLibrary;
-using FetchMeFoss.Concretes;
+﻿using CommonLibrary;
 using FetchMeFoss.Models;
+using System.Data;
 
 namespace FetchMeFoss.Controllers
 {
@@ -16,6 +9,7 @@ namespace FetchMeFoss.Controllers
     {
         private Init.Initialization<Configuration> _init;
         private DataTable _fossTable = new DataTable();
+        private List<SoftwareConfigInfo> _updateConfigs = new List<SoftwareConfigInfo>();
         // todo 3;
         public MainProcessing(Init.Initialization<Configuration> initialization)
         {
@@ -33,7 +27,7 @@ namespace FetchMeFoss.Controllers
             foreach (SoftwareConfigInfo fossDownload in _init.Configuration.FossDownloadData)
             {
                 // Some foss items could have more than one potential download link
-
+                // todo 2; come back to this at a later date. not concerned with this now.
                 DataRow dRow = _fossTable.NewRow();
                 dRow["Title"] = fossDownload.AppTitle;
                 // dRow["Url"] = differentFossDownload;
@@ -52,6 +46,8 @@ namespace FetchMeFoss.Controllers
             {
                 List<Task> downloadTasks = new List<Task>();
                 // todo 1; do i really need a task? maybe to run them all at once
+                // todo 1; think about revising this loop here and adding the when all elsewhere?
+                //         issue is that i can't update the config as new info is found.
                 foreach (SoftwareConfigInfo fossDownload in _init.Configuration.FossDownloadData)
                 {
                     // Some foss items could have more than one potential download link
@@ -65,48 +61,45 @@ namespace FetchMeFoss.Controllers
             {
                 _init.Logger.Log("BeginDownload Error", ex);
             }
-
         }
         // todo 3;
         private async Task DownloadExecutable(SoftwareConfigInfo fossDownload)
         {
             _init.Logger.Log("DownloadExecutable called...");
-
-            // The await operator is what causes a pause in the Task.WhenAll occurs.
-            // This makes every application "Wait" until it's finished downloading
-            // before it starts another one. If you remove the "await Task.Delay(1)"
-            // it will download everything syncronously, but gradually pull down the 
-            // files one by one. Having the delay ensures the app pauses preventing
-            // user confusion that the app is finished running when it is not.
-            await Task.Delay(1);
-            // todo 2; webclient bad?
-
-            // todo 1; make loop keep interating until a successful download.
-            // once successful, stop searching
-            string softwareKey = fossDownload.AppTitle.ToLower().Replace(" ", "");
-            bool isKey = FossDataConstants.FossItemType.TryGetValue(
-                softwareKey, out Type? fossItemType);
-
-            if (isKey)
+            try
             {
-                try
+                // todo 1; make loop keep interating until a successful download.
+                // once successful, stop searching
+                Type fossItemType;
+                string softwareKey = fossDownload.AppTitle.ToLower().Replace(" ", "");
+                bool isKey = FossDataConstants.FossItemType.TryGetValue(
+                             softwareKey, out fossItemType);
+                if (isKey)
                 {
-                    var fossAction = (FossInterface)Activator.CreateInstance(fossItemType, fossDownload, _init);
-                    if (fossAction != null)
+                    var fossInterface = (FossInterface)Activator.CreateInstance(
+                                        fossItemType, fossDownload, _init);
+
+                    if (fossInterface != null)
                     {
                         // todo 2; optimize awaits once app is running smoother. 
-                        // todo 1; app is ending but then running syncronously. try to resolve this.
-                        fossAction.PerformDownload();
-                        //  var x = await fossAction.ParseHtmlForDownloadLink(uri);
+                        // app is ending but then running syncronously
+                        await fossInterface.DownloadWithDirectLink();
+                        //await fossInterface.DownloadWithHtmlParsing();
+
+                        /*
+                        // How to dynamically make type-casts
+                        // super dangerous if not caught properly. I would require try-catch
+                        // plus a switch case for every possible type to feel comfortable. as
+                        // well as have unit tests on it
+                        dynamic k = Convert.ChangeType(fossInterface, fossItemType);
+                        k.ParseHtmlForDownloadLink(new HttpClient());*/
                     }
                 }
-                catch (Exception ex)
-                {
-                    _init.Logger.Log("Error", ex);
-                }
+            }
+            catch (Exception ex)
+            {
+                _init.Logger.Log("DownloadExecutable error", ex);
             }
         }
-        // todo 1; need function that performs search of html relative url and pulls that file
-        // todo 1; need function that finds the most recent/up-to-date file and downloads it.
     }
 }

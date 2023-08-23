@@ -19,5 +19,10 @@ namespace FetchMeFoss.Concretes
             SoftwareItem = sci;
             _init = initialization;
         }
+
+        public async Task ParseForCurrentVersion()
+        {
+            // todo 1; krita needs different regex or stricter parsing
+        }
     }
 }

@@ -10,7 +10,8 @@ namespace FetchMeFoss.Models
     public class Configuration
     {
         private string _fullPath {get; set;}
-        public string DownloadPath { get { return _fullPath; } set { _fullPath = Path.GetFullPath(value); } }
+        public string DownloadPath { get { return _fullPath; } 
+                                     set { _fullPath = Path.GetFullPath(value); } }
         public List<SoftwareConfigInfo> FossDownloadData { get; set; }
 
         // todo 3;
