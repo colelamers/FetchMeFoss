@@ -48,32 +48,24 @@ namespace FetchMeFoss.Models
         // todo 3; 
         public async Task<bool> DownloadWithHtmlParsing()
         {
+            bool fileDownloaded = false;
             // Grab download page url info first, else swap out version in direct link
             using (HttpClient client = new HttpClient())
             {
                 Uri currentUrl = new Uri(this.SoftwareItem.SiteDownloadPageLink);
-                string directDownloadLink = await ParseHtmlForDownloadLink(client);
-                string fileName = Path.GetFileNameWithoutExtension(directDownloadLink);
-                string extension = Path.GetExtension(directDownloadLink);
+                string downloadLink = await ParseHtmlForDownloadLink(client);
+                string fileName = Path.GetFileNameWithoutExtension(downloadLink);
+                string extension = Path.GetExtension(downloadLink);
                 string downloadPath = _init.Configuration.DownloadPath + fileName + extension;
-
-                using (Stream? fileDownload = await client.GetStreamAsync(directDownloadLink))
-                {
-                    using (Stream fs = new FileStream(downloadPath, FileMode.Create))
-                    {
-                        // fileDownload.CopyTo(fs);         // synchronous downloads
-                        await fileDownload.CopyToAsync(fs); // asyncronous downloads
-                        fs.Flush();
-                    }
-                    fileDownload.Flush();
-                }
+                fileDownloaded = await DownloadExec(client, downloadLink, downloadPath);
             }
             // todo 1; idk if i even want this yet...to early to know for Tasks
-            return true;
+            return fileDownloaded;
         }
         // todo 3; 
         public async Task<bool> DownloadWithDirectLink()
         {
+            bool fileDownloaded = false;
             // Grab download page url info first, else swap out version in direct link
             using (HttpClient client = new HttpClient())
             {
@@ -81,24 +73,38 @@ namespace FetchMeFoss.Models
                 await ParseForCurrentVersion();
                 string downloadLink = this.SoftwareItem.FullLink;
                 string downloadPath = _init.Configuration.DownloadPath + this.SoftwareItem.FileName;
-
-                using (Stream? fileDownload = await client.GetStreamAsync(downloadLink))
-                {
-                    if (File.Exists(downloadPath))
-                    {
-                        File.Delete(downloadPath);
-                    }
-                    using (Stream fs = new FileStream(downloadPath, FileMode.Create))
-                    {
-                        // fileDownload.CopyTo(fs);         // synchronous downloads
-                        await fileDownload.CopyToAsync(fs); // asyncronous downloads
-                        fs.Flush();
-                    }
-                    //fileDownload.Flush();
-                }
+                fileDownloaded = await DownloadExec(client, downloadLink, downloadPath);
             }
             // todo 1; idk if i even want this yet...to early to know for Tasks
-            return true; 
+            return fileDownloaded; 
+        }
+        // todo 3;
+        public async Task<bool> DownloadExec(HttpClient client, string downloadLink, 
+                                             string downloadPath)
+        {
+            using (Stream? fileDownload = await client.GetStreamAsync(downloadLink))
+            {
+                if (File.Exists(downloadPath))
+                {
+                    _init.Logger.Log($"File exists! Deleting: {downloadPath}");
+                    File.Delete(downloadPath);
+                }
+                // CreateNew used because I'm concerned of possible infinite loop downloads
+                using (Stream fs = new FileStream(downloadPath, FileMode.CreateNew))
+                {
+                    // fileDownload.CopyTo(fs);         // synchronous downloads
+                    await fileDownload.CopyToAsync(fs); // asyncronous downloads
+                    fs.Flush();
+                }
+            }
+
+            if (File.Exists(downloadPath))
+            {
+                _init.Logger.Log("File has downloaded");
+                return true;
+            }
+
+            return false;
         }
         /**
          * default download and return very first executable file found
@@ -109,7 +115,7 @@ namespace FetchMeFoss.Models
             Uri currentUrl = new Uri(SoftwareItem.SiteDownloadPageLink);
             string rawHtml = await client.GetStringAsync(currentUrl);
             string[] pageExecs = rawHtml.Split(
-                new string[] { SoftwareItem.FileType }, StringSplitOptions.None);
+                                 new string[] { SoftwareItem.FileType }, StringSplitOptions.None);
             foreach (string unparsedExec in pageExecs)
             {
                 // todo 2; may need to revise this to pull non-https items

@@ -53,7 +53,6 @@ namespace FetchMeFoss.Controllers
                     // Some foss items could have more than one potential download link
                     // todo 1; don't iterate here, iterate in DownloadExecutable
                     downloadTasks.Add(DownloadExecutable(fossDownload));
-                    // todo 1; add every which way something can get download in here.
                 }
                 await Task.WhenAll(downloadTasks);
             }
