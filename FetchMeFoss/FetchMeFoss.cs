@@ -39,13 +39,10 @@ namespace FetchMeFoss
         // todo 3;
         private async void btnDownload_Click(object sender, EventArgs e)
         {
-            // todo 1; asnyc void for this? no idea if it'll work
+            // todo 2; asnyc void for this? no idea if it'll work
             EnableDisableFields(false);
-            //_proc.CompareCurrentTableWithConfig((DataTable)dgvFossInfo.
-            //DataSource);
+            //_proc.CompareCurrentTableWithConfig((DataTable)dgvFossInfo.DataSource);
             await _proc.BeginDownload();
-            // todo 1; need a configuration save at the end because i intend on
-            // updating the config after url fetches
             EnableDisableFields(true);
         }
     }

@@ -22,6 +22,7 @@ namespace FetchMeFoss.Concretes
         // todo 3;
         public void UpdateSoftwareConfigInfo(string nVersion)
         {
+            _init.Logger.Log("Git-UpdateSoftwareConfigInfo called...");
             Regex rgx = new Regex("([0-9]?[0-9]?[0-9]?[0-9]?" +
                                 "\\.[0-9]?[0-9]?[0-9]?[0-9]?" +
                                 "\\.?[0-9]?[0-9]?[0-9]?[0-9]?" +

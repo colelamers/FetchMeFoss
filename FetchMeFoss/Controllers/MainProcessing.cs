@@ -41,20 +41,16 @@ namespace FetchMeFoss.Controllers
         public async Task BeginDownload()
         {
             _init.Logger.Log("BeginDownload called...");
-
             try
             {
-                List<Task> downloadTasks = new List<Task>();
-                // todo 1; do i really need a task? maybe to run them all at once
-                // todo 1; think about revising this loop here and adding the when all elsewhere?
-                //         issue is that i can't update the config as new info is found.
+                var downloadTasks = new List<Task<SoftwareConfigInfo>>();
                 foreach (SoftwareConfigInfo fossDownload in _init.Configuration.FossDownloadData)
                 {
-                    // Some foss items could have more than one potential download link
-                    // todo 1; don't iterate here, iterate in DownloadExecutable
                     downloadTasks.Add(DownloadExecutable(fossDownload));
                 }
-                await Task.WhenAll(downloadTasks);
+                var updatedSoftwareItems = await Task.WhenAll(downloadTasks);
+                _init.Configuration.FossDownloadData = updatedSoftwareItems.ToList();
+                _init.SaveConfiguration();
             }
             catch (Exception ex)
             {
@@ -62,43 +58,38 @@ namespace FetchMeFoss.Controllers
             }
         }
         // todo 3;
-        private async Task DownloadExecutable(SoftwareConfigInfo fossDownload)
+        private async Task<SoftwareConfigInfo> DownloadExecutable(SoftwareConfigInfo fossDownload)
         {
             _init.Logger.Log("DownloadExecutable called...");
-            try
+            Type fossItemType;
+            string softwareKey = fossDownload.AppTitle.ToLower().Replace(" ", "");
+            bool isKey = FossDataConstants.FossItemType.TryGetValue(softwareKey, out fossItemType);
+            if (isKey)
             {
-                // todo 1; make loop keep interating until a successful download.
-                // once successful, stop searching
-                Type fossItemType;
-                string softwareKey = fossDownload.AppTitle.ToLower().Replace(" ", "");
-                bool isKey = FossDataConstants.FossItemType.TryGetValue(
-                             softwareKey, out fossItemType);
-                if (isKey)
+                var fsInterface = (FossInterface)Activator.CreateInstance(
+                                  fossItemType, fossDownload, _init);
+
+                if (fsInterface != null)
                 {
-                    var fossInterface = (FossInterface)Activator.CreateInstance(
-                                        fossItemType, fossDownload, _init);
-
-                    if (fossInterface != null)
+                    // todo 2; optimize awaits once app is running smoother. 
+                    // app is ending but then running syncronously
+                    var success = await fsInterface.DownloadWithDirectLink();
+                    if (!success)
                     {
-                        // todo 2; optimize awaits once app is running smoother. 
-                        // app is ending but then running syncronously
-                        await fossInterface.DownloadWithDirectLink();
-                        //await fossInterface.DownloadWithHtmlParsing();
+                        success = await fsInterface.DownloadWithHtmlParsing();
+                    }
 
-                        /*
-                        // How to dynamically make type-casts
-                        // super dangerous if not caught properly. I would require try-catch
-                        // plus a switch case for every possible type to feel comfortable. as
-                        // well as have unit tests on it
-                        dynamic k = Convert.ChangeType(fossInterface, fossItemType);
-                        k.ParseHtmlForDownloadLink(new HttpClient());*/
+                    // Pass by reference after interface updates VersionInfo.
+                    // This is so we can update the config file later.
+                    // Only if download succeeds will we do this
+                    if (success)
+                    {
+                        fossDownload = fsInterface.SoftwareItem;
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                _init.Logger.Log("DownloadExecutable error", ex);
-            }
+
+            return fossDownload;
         }
     }
 }

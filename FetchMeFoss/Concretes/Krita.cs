@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace FetchMeFoss.Concretes
 {
+    // todo 3;
     public class Krita : FossInterface
     {
         public SoftwareConfigInfo SoftwareItem { get; set; }
@@ -19,9 +20,11 @@ namespace FetchMeFoss.Concretes
             SoftwareItem = sci;
             _init = initialization;
         }
-
+        // todo 3;
         public async Task ParseForCurrentVersion()
         {
+            _init.Logger.Log("Krita-ParseForCurrentVersion called...");
+
             // todo 1; krita needs different regex or stricter parsing
         }
     }

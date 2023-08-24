@@ -44,44 +44,61 @@ namespace FetchMeFoss.Models
     {
         public SoftwareConfigInfo SoftwareItem { get; set; }
         public Init.Initialization<Configuration> _init { get; protected set;}
-        // todo 1; implement a configuration update function after url fetch
         // todo 3; 
         public async Task<bool> DownloadWithHtmlParsing()
         {
+            _init.Logger.Log("DownloadWithHtmlParsing called...");
             bool fileDownloaded = false;
-            // Grab download page url info first, else swap out version in direct link
-            using (HttpClient client = new HttpClient())
+            try
             {
-                Uri currentUrl = new Uri(this.SoftwareItem.SiteDownloadPageLink);
-                string downloadLink = await ParseHtmlForDownloadLink(client);
-                string fileName = Path.GetFileNameWithoutExtension(downloadLink);
-                string extension = Path.GetExtension(downloadLink);
-                string downloadPath = _init.Configuration.DownloadPath + fileName + extension;
-                fileDownloaded = await DownloadExec(client, downloadLink, downloadPath);
+                // Grab download page url info first, else swap out version in direct link
+                using (HttpClient client = new HttpClient())
+                {
+                    Uri currentUrl = new Uri(this.SoftwareItem.SiteDownloadPageLink);
+                    string downloadLink = await ParseHtmlForDownloadLink(client);
+                    string fileName = Path.GetFileNameWithoutExtension(downloadLink);
+                    string extension = Path.GetExtension(downloadLink);
+                    string downloadPath = _init.Configuration.DownloadPath + fileName + extension;
+                    fileDownloaded = await DownloadExec(client, downloadLink, downloadPath);
+                }
             }
-            // todo 1; idk if i even want this yet...to early to know for Tasks
+            catch (Exception ex)
+            {
+                _init.Logger.Log("DownloadWithHtmlParsing error", ex);
+            }
             return fileDownloaded;
         }
         // todo 3; 
         public async Task<bool> DownloadWithDirectLink()
         {
+            _init.Logger.Log("DownloadWithDirectLink called...");
             bool fileDownloaded = false;
-            // Grab download page url info first, else swap out version in direct link
-            using (HttpClient client = new HttpClient())
+            try
             {
-                Uri currentUrl = new Uri(this.SoftwareItem.SiteDownloadPageLink);
-                await ParseForCurrentVersion();
-                string downloadLink = this.SoftwareItem.FullLink;
-                string downloadPath = _init.Configuration.DownloadPath + this.SoftwareItem.FileName;
-                fileDownloaded = await DownloadExec(client, downloadLink, downloadPath);
+                // Grab download page url info first, else swap out version in direct link
+                using (HttpClient client = new HttpClient())
+                {
+                    Uri currentUrl = new Uri(this.SoftwareItem.SiteDownloadPageLink);
+                    await ParseForCurrentVersion();
+                    string downloadLink = this.SoftwareItem.FullLink;
+                    string downloadPath = _init.Configuration.DownloadPath + 
+                                          this.SoftwareItem.FileName;
+                    fileDownloaded = await DownloadExec(client, downloadLink, downloadPath);
+                }
             }
-            // todo 1; idk if i even want this yet...to early to know for Tasks
+            catch (Exception ex)
+            {
+                _init.Logger.Log("DownloadWithHtmlParsing error", ex);
+            }
             return fileDownloaded; 
         }
         // todo 3;
-        public async Task<bool> DownloadExec(HttpClient client, string downloadLink, 
+        private async Task<bool> DownloadExec(HttpClient client, string downloadLink, 
                                              string downloadPath)
         {
+            _init.Logger.Log("DownloadExec called...");
+
+            // todo 2; possibly throw in commonfunctions?
             using (Stream? fileDownload = await client.GetStreamAsync(downloadLink))
             {
                 if (File.Exists(downloadPath))
@@ -100,7 +117,7 @@ namespace FetchMeFoss.Models
 
             if (File.Exists(downloadPath))
             {
-                _init.Logger.Log("File has downloaded");
+                _init.Logger.Log($"File has downloaded here: {downloadPath}");
                 return true;
             }
 
@@ -112,6 +129,8 @@ namespace FetchMeFoss.Models
          */
         protected virtual async Task<string> ParseHtmlForDownloadLink(HttpClient client)
         {
+            _init.Logger.Log("ParseHtmlForDownloadLink called...");
+
             Uri currentUrl = new Uri(SoftwareItem.SiteDownloadPageLink);
             string rawHtml = await client.GetStringAsync(currentUrl);
             string[] pageExecs = rawHtml.Split(
@@ -135,6 +154,8 @@ namespace FetchMeFoss.Models
         // todo 2; this can use some serious refactoring
         public async Task ParseForCurrentVersion()
         {
+            _init.Logger.Log("ParseForCurrentVersion called...");
+
             using ( HttpClient client = new HttpClient() )
             {
                 // Fetches version numbers up to 4 numbers in 4 sections with periods
@@ -169,6 +190,7 @@ namespace FetchMeFoss.Models
         // todo 3;
         public void UpdateSoftwareConfigInfo(string nVersion)
         {
+            _init.Logger.Log("UpdateSoftwareConfigInfo called...");
             // Update the struct with new version data and quit searching
             SoftwareConfigInfo sci = SoftwareItem;
             sci.UriPathToExec = sci.UriPathToExec.Replace(sci.VersionNo, nVersion);

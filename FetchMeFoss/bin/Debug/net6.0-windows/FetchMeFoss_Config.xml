@@ -14,11 +14,11 @@
     <SoftwareConfigInfo>
       <AppTitle>Git</AppTitle>
       <FileType>exe</FileType>
-      <VersionNo>2.41.0.3</VersionNo>
+      <VersionNo>2.42.0</VersionNo>
       <SiteDownloadPageLink>https://git-scm.com/download/win</SiteDownloadPageLink>
       <BaseUri>https://github.com</BaseUri>
-      <UriPathToExec>/git-for-windows/git/releases/download/v2.41.0.windows.3/</UriPathToExec>
-      <FileName>Git-2.41.0.3-64-bit.exe</FileName>
+      <UriPathToExec>/git-for-windows/git/releases/download/v2.42.0.windows.1/</UriPathToExec>
+      <FileName>Git-2.42.0-64-bit.exe</FileName>
     </SoftwareConfigInfo>
   </FossDownloadData>
 </Configuration>

@@ -92,8 +92,6 @@ namespace FetchMeFoss.Models
            // {"winrar", typeof(WinRar) },
            // {"winscp", typeof(WinScp) },
            // {"zoom", typeof(Zoom) },
-            // todo 1; update as you add new interface implementers
         };
-
     }
 }
