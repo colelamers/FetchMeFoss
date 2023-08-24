@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using CommonLibrary;
-using FetchMeFoss.Concretes;
+﻿using CommonLibrary;
 using FetchMeFoss.Models;
+using System.Data;
 
 namespace FetchMeFoss.Controllers
 {
@@ -16,6 +9,7 @@ namespace FetchMeFoss.Controllers
     {
         private Init.Initialization<Configuration> _init;
         private DataTable _fossTable = new DataTable();
+        private List<SoftwareConfigInfo> _updateConfigs = new List<SoftwareConfigInfo>();
         // todo 3;
         public MainProcessing(Init.Initialization<Configuration> initialization)
         {
@@ -33,117 +27,69 @@ namespace FetchMeFoss.Controllers
             foreach (SoftwareConfigInfo fossDownload in _init.Configuration.FossDownloadData)
             {
                 // Some foss items could have more than one potential download link
-                foreach (string differentFossDownload in fossDownload.ExecutableLinks)
-                {
-                    DataRow dRow = _fossTable.NewRow();
-                    dRow["Title"] = fossDownload.ApplicationTitle;
-                    dRow["Url"] = differentFossDownload;
-                    dRow["WebPage"] = fossDownload.LinkToDownloadPage;
-                    _fossTable.Rows.Add(dRow);
-                }
+                // todo 2; come back to this at a later date. not concerned with this now.
+                DataRow dRow = _fossTable.NewRow();
+                dRow["Title"] = fossDownload.AppTitle;
+                // dRow["Url"] = differentFossDownload;
+                dRow["WebPage"] = fossDownload.SiteDownloadPageLink;
+                _fossTable.Rows.Add(dRow);
             }
             return _fossTable;
         }
-        //todo 3; 
-/*        public void CompareCurrentTableWithConfig(DataTable dgvTableSource)
-        {
-            // todo 4; try to implement this eventually. seems a tad complicated (not difficult) atm.
-            // just update the config file for now.
-            if (dgvTableSource != _fossTable)
-            {
-                foreach (DataRow dRow in dgvTableSource.Rows)
-                {
-                    foreach (SoftwareInfo fossDownload in _init.Configuration.FossDownloadData)
-                    {
-                        // Some foss items could have more than one potential download link
-                        foreach (string differentFossDownload in fossDownload.ExecutableLinks)
-                        {
-                            dRow["Title"] = fossDownload.ApplicationTitle;
-                            dRow["Url"] = differentFossDownload;
-                            dRow["WebPage"] = fossDownload.LinkToDownloadPage;
-                        }
-                    }
-                }
-            }
-        }*/
         // todo 3;
+        // todo 4; rename to something more dynamic like "building async functions?"
         public async Task BeginDownload()
         {
             _init.Logger.Log("BeginDownload called...");
-
             try
             {
-                List<Task> downloadTasks = new List<Task>();
-                // todo 1; do i really need a task? maybe to run them all at once
+                var downloadTasks = new List<Task<SoftwareConfigInfo>>();
                 foreach (SoftwareConfigInfo fossDownload in _init.Configuration.FossDownloadData)
                 {
-                    // Some foss items could have more than one potential download link
-                    // todo 1; don't iterate here, iterate in DownloadExecutable
                     downloadTasks.Add(DownloadExecutable(fossDownload));
-                    // todo 1; add every which way something can get download in here.
                 }
-                await Task.WhenAll(downloadTasks);
+                var updatedSoftwareItems = await Task.WhenAll(downloadTasks);
+                _init.Configuration.FossDownloadData = updatedSoftwareItems.ToList();
+                _init.SaveConfiguration();
             }
             catch (Exception ex)
             {
                 _init.Logger.Log("BeginDownload Error", ex);
             }
-
         }
         // todo 3;
-        private async Task DownloadExecutable(SoftwareConfigInfo fossDownload)
+        private async Task<SoftwareConfigInfo> DownloadExecutable(SoftwareConfigInfo fossDownload)
         {
             _init.Logger.Log("DownloadExecutable called...");
-
-            // The await operator is what causes a pause in the Task.WhenAll occurs.
-            // This makes every application "Wait" until it's finished downloading
-            // before it starts another one. If you remove the "await Task.Delay(1)"
-            // it will download everything syncronously, but gradually pull down the 
-            // files one by one. Having the delay ensures the app pauses preventing
-            // user confusion that the app is finished running when it is not.
-            await Task.Delay(1);
-            // todo 2; webclient bad?
-            try
+            Type fossItemType;
+            string softwareKey = fossDownload.AppTitle.ToLower().Replace(" ", "");
+            bool isKey = FossDataConstants.FossItemType.TryGetValue(softwareKey, out fossItemType);
+            if (isKey)
             {
-                foreach (string differentFossDownload in fossDownload.ExecutableLinks)
+                var fsInterface = (FossInterface)Activator.CreateInstance(
+                                  fossItemType, fossDownload, _init);
+
+                if (fsInterface != null)
                 {
-                    // todo 1; make loop keep interating until a successful download.
-                    // once successful, stop searching
-                    string softwareKey = fossDownload.ApplicationTitle.ToLower().Replace(" ", "");
-                    bool isKey = FossDataConstants.FossItemType.TryGetValue(
-                        softwareKey, out var fossItemType);
-                    if (isKey)
+                    // todo 2; optimize awaits once app is running smoother. 
+                    // app is ending but then running syncronously
+                    var success = await fsInterface.DownloadWithDirectLink();
+                    if (!success)
                     {
-                        Uri uri = new Uri(fossDownload.LinkToDownloadPage);
-                        Type interType = FossDataConstants.FossItemType[softwareKey];
-                        var fossAction = Activator.CreateInstance(interType, fossDownload);
-                        if (fossAction != null)
-                        {
-                          //  var x = await fossAction.ParseHtmlForDownloadLink(uri);
-                        }
+                        success = await fsInterface.DownloadWithHtmlParsing();
+                    }
+
+                    // Pass by reference after interface updates VersionInfo.
+                    // This is so we can update the config file later.
+                    // Only if download succeeds will we do this
+                    if (success)
+                    {
+                        fossDownload = fsInterface.SoftwareItem;
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                _init.Logger.Log("Error", ex);
-            }
-            /*
 
-            string fileName = Path.GetFileNameWithoutExtension(url);
-            string fileExtension = Path.GetExtension(url);
-            string downloadFileFullLocation = _init.Configuration.DownloadPath + fileName + fileExtension;
-            using (Stream? fileDownload = await client.GetStreamAsync(uri))
-                {
-                    using (Stream fs = new FileStream(downloadFileFullLocation, FileMode.CreateNew))
-                    {
-                        // fileDownload.CopyTo(fs);         // synchronous downloads
-                        await fileDownload.CopyToAsync(fs); // asyncronous downloads
-                    }
-                }
-            */
+            return fossDownload;
         }
-        // todo 1; need function that performs search of html relative url and pulls that file
-        // todo 1; need function that finds the most recent/up-to-date file and downloads it.
     }
 }

@@ -1,4 +1,5 @@
-﻿using FetchMeFoss.Models;
+﻿using CommonLibrary;
+using FetchMeFoss.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,40 +9,23 @@ using System.Threading.Tasks;
 
 namespace FetchMeFoss.Concretes
 {
-    public class Krita : FossActions
+    // todo 3;
+    public class Krita : FossInterface
     {
-        // todo 4; privatize these?
-        public List<Uri>? ExecutableLinks { get; private set; }
-        public Uri? LinkToDownloadPage { get; private set; }
-        public Uri? CdnDownloadLink { get; private set; }
-        public Uri? UniqueDownloadLink { get; private set; }
-        public Krita(SoftwareConfigInfo sci) 
+        public SoftwareConfigInfo SoftwareItem { get; set; }
+        public Init.Initialization<Configuration> _init { get; set; }
+
+        public Krita(SoftwareConfigInfo sci, Init.Initialization<Configuration> initialization) 
         { 
             SoftwareItem = sci;
+            _init = initialization;
+        }
+        // todo 3;
+        public async Task ParseForCurrentVersion()
+        {
+            _init.Logger.Log("Krita-ParseForCurrentVersion called...");
 
-            if (!string.IsNullOrEmpty(sci.LinkToDownloadPage))
-            {
-                this.LinkToDownloadPage = new Uri(sci.LinkToDownloadPage.ToString());
-            }
-
-            if (!string.IsNullOrEmpty(sci.CdnDownloadLink))
-            {
-                this.CdnDownloadLink = new Uri(sci.CdnDownloadLink.ToString());
-            }
-
-            if (!string.IsNullOrEmpty(sci.UniqueDownloadLink))
-            {
-                this.UniqueDownloadLink = new Uri(sci.UniqueDownloadLink.ToString());
-            }
-
-            if (sci.ExecutableLinks.Count > 0)
-            {
-                this.ExecutableLinks = new List<Uri>();
-                foreach (string url in sci.ExecutableLinks)
-                {
-                    this.ExecutableLinks.Add(new Uri(url));
-                }
-            }
+            // todo 1; krita needs different regex or stricter parsing
         }
     }
 }

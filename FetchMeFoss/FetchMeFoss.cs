@@ -8,8 +8,8 @@ namespace FetchMeFoss
     // todo 3;
     public partial class FetchMeFoss : Form
     {
-        private Init.Initialization<Configuration>? _init;
-        private MainProcessing? _proc;
+        private Init.Initialization<Configuration> _init;
+        private MainProcessing _proc;
         // todo 3;
         public FetchMeFoss()
         {
@@ -21,13 +21,11 @@ namespace FetchMeFoss
         {
             // Initialize the config file and logger
             _init = new Init.Initialization<Configuration>();
-            if (_init == null)
-            {
-                MessageBox.Show("Fatal Error: Init.Initialization failed! Exiting App!");
-                Application.Exit();
-            }
-
             _proc = new MainProcessing(_init);
+            FillTable();
+        }
+        private void FillTable()
+        {
             tbDownloadPath.Text = _init.Configuration.DownloadPath;
             dgvFossInfo.DataSource = _proc.BuildDataTableFromConfiguration();
         }
@@ -41,7 +39,7 @@ namespace FetchMeFoss
         // todo 3;
         private async void btnDownload_Click(object sender, EventArgs e)
         {
-            // todo 1; asnyc void for this? no idea if it'll work
+            // todo 2; asnyc void for this? no idea if it'll work
             EnableDisableFields(false);
             //_proc.CompareCurrentTableWithConfig((DataTable)dgvFossInfo.DataSource);
             await _proc.BeginDownload();

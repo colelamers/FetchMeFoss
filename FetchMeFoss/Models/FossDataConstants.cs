@@ -15,7 +15,7 @@ namespace FetchMeFoss.Models
            // {"anki", typeof(Anki) },
            // {"audacious", typeof(Audacious) },
            // {"autohotkey", typeof(AutoHotkey) },
-           {"audacity", typeof(Audacity) },
+           //{"audacity", typeof(Audacity) },
            // {"authy", typeof(Authy) },
            // {"bulkrenameutility", typeof(BulkRenameUtility) },
            // {"dotnet", typeof(DotNetRuntime) },
@@ -36,7 +36,7 @@ namespace FetchMeFoss.Models
            // {"firefox", typeof(Firefox) },
            // {"freefilesync", typeof(FreeFileSync) },
            // {"gimp", typeof(Gimp) },
-           // {"git", typeof(Git) },
+            {"git", typeof(Git) },
            // {"gitforwindows", typeof(Git) },
            // {"gnucash", typeof(Gnucash) },
            // {"greenshot", typeof(Greenshot) },
@@ -92,8 +92,6 @@ namespace FetchMeFoss.Models
            // {"winrar", typeof(WinRar) },
            // {"winscp", typeof(WinScp) },
            // {"zoom", typeof(Zoom) },
-            // todo 1; update as you add new interface implementers
         };
-
     }
 }
