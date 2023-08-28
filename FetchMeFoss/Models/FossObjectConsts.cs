@@ -3,18 +3,19 @@
 namespace FetchMeFoss.Models
 {
     // todo 3;
-    public class FossDataConstants
+    public class FossObjectConsts
     {
         // todo 1; implmement all these
         public static Dictionary<string, Type> FossItemType = new Dictionary<string, Type>
         {
-            //{"7zip", typeof(SevenZip) },
-            //{"7z", typeof(SevenZip) },
-           // {"sevenzip", typeof(SevenZip) },
+            {"7zip", typeof(SevenZip) },
+            {"7z", typeof(SevenZip) },
+            {"sevenzip", typeof(SevenZip) },
            // {"ableton", typeof(Ableton) },
            // {"anki", typeof(Anki) },
            // {"audacious", typeof(Audacious) },
            // {"autohotkey", typeof(AutoHotkey) },
+           // {"ahk", typeof(AutoHotkey) },
            //{"audacity", typeof(Audacity) },
            // {"authy", typeof(Authy) },
            // {"bulkrenameutility", typeof(BulkRenameUtility) },
@@ -42,6 +43,7 @@ namespace FetchMeFoss.Models
            // {"greenshot", typeof(Greenshot) },
            // {"handbrake", typeof(Handbrake) },
            // {"huiontabletdriver", typeof(HuionTabletDriver) },
+           // {"huiontablet", typeof(HuionTabletDriver) },
            // {"imageglass", typeof(Imageglass) },
            // {"intellij", typeof(Intellij) },
            // {"java", typeof(Java) },
@@ -70,6 +72,8 @@ namespace FetchMeFoss.Models
            // {"obs", typeof(OpenBroadcastSoftware) },
            // {"openbroadcastsoftware", typeof(OpenBroadcastSoftware) },
            // {"opera", typeof(Opera) },
+           // {"oraclevirtualbox", typeof(VirtualBox) },
+           // {"virtualbox", typeof(VirtualBox) },
            // {"pdfsam", typeof(Pdfsam) },
            // {"python", typeof(Python) },
            // {"rufus", typeof(Rufus) },
@@ -77,6 +81,7 @@ namespace FetchMeFoss.Models
            // {"scribus", typeof(Scribus) },
            // {"steam", typeof(Steam) },
            // {"sumatra", typeof(Sumatra) },
+           // {"sumatrapdf", typeof(Sumatra) },
            // {"tor", typeof(Tor) },
            // {"thunderbird", typeof(Thunderbird) },
            // {"twitch", typeof(Twitch) },
@@ -84,8 +89,10 @@ namespace FetchMeFoss.Models
            // {"ubisof", typeof(UbisoftConnect) },
            // {"virtualbox", typeof(VirtualBox) },
            // {"visualstudio", typeof(VisualStudio) },
+           // {"visualstudiocommunity", typeof(VisualStudio) },
            // {"vlc", typeof(Vlc) },
            // {"vnc", typeof(Vnc) },
+           // {"vncviewer", typeof(Vnc) },
            // {"vscode", typeof(VsCode) },
            // {"visualstudiocode", typeof(VsCode) },
            // {"windirstat", typeof(WinDirStat) },

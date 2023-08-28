@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DownloadPath>C:\Users\xen\Downloads\</DownloadPath>
+  <FossDownloadData>
+  
+  EMPTY SECTION REMOVE!!!
+    <SoftwareConfigInfo>
+      <AppTitle></AppTitle>
+      <FileType></FileType>
+      <VersionNo></VersionNo>
+      <SiteDownloadPageLink></SiteDownloadPageLink>
+      <BaseUri></BaseUri>
+      <UriPathToExec></UriPathToExec>
+      <FileName></FileName>
+    </SoftwareConfigInfo>
+  EMPTY SECTION REMOVE!!!
+
+    <SoftwareConfigInfo>
+      <AppTitle>7z</AppTitle>
+      <FileType>exe</FileType>
+      <VersionNo>2301</VersionNo>
+      <SiteDownloadPageLink>https://www.7-zip.org/download.html</SiteDownloadPageLink>
+      <BaseUri>https://www.7-zip.org</BaseUri>
+      <UriPathToExec>/a/</UriPathToExec>
+      <FileName>7z2301-x64.exe</FileName>
+    </SoftwareConfigInfo>
+    <SoftwareConfigInfo>
+      <AppTitle>Git</AppTitle>
+      <FileType>exe</FileType>
+      <VersionNo>2.42.0</VersionNo>
+      <SiteDownloadPageLink>https://git-scm.com/download/win</SiteDownloadPageLink>
+      <BaseUri>https://github.com</BaseUri>
+      <UriPathToExec>/git-for-windows/git/releases/download/v2.42.0.windows.1/</UriPathToExec>
+      <FileName>Git-2.42.0-64-bit.exe</FileName>
+    </SoftwareConfigInfo>
+    <SoftwareConfigInfo>
+      <AppTitle>Krita</AppTitle>
+      <FileType>exe</FileType>
+      <VersionNo>5.1.5</VersionNo>
+      <SiteDownloadPageLink>https://krita.org/en/download/krita-desktop/</SiteDownloadPageLink>
+      <BaseUri>https://mirrors.mit.edu</BaseUri>
+      <UriPathToExec>/kde/stable/krita/5.1.5/</UriPathToExec>
+      <FileName>krita-x64-5.1.5-setup.exe</FileName>
+    </SoftwareConfigInfo>
+  </FossDownloadData>
+</Configuration>

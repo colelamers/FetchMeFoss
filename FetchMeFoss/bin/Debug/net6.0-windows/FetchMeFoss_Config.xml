@@ -3,22 +3,13 @@
   <DownloadPath>C:\Users\xen\Downloads\</DownloadPath>
   <FossDownloadData>
     <SoftwareConfigInfo>
-      <AppTitle>Krita</AppTitle>
-      <FileType>exe</FileType>
-      <VersionNo>5.1.5</VersionNo>
-      <SiteDownloadPageLink>https://krita.org/en/download/krita-desktop/</SiteDownloadPageLink>
-      <BaseUri>https://mirrors.mit.edu</BaseUri>
-      <UriPathToExec>/kde/stable/krita/5.1.5/</UriPathToExec>
-      <FileName>krita-x64-5.1.5-setup.exe</FileName>
-    </SoftwareConfigInfo>
-    <SoftwareConfigInfo>
-      <AppTitle>Git</AppTitle>
-      <FileType>exe</FileType>
-      <VersionNo>2.42.0</VersionNo>
-      <SiteDownloadPageLink>https://git-scm.com/download/win</SiteDownloadPageLink>
-      <BaseUri>https://github.com</BaseUri>
-      <UriPathToExec>/git-for-windows/git/releases/download/v2.42.0.windows.1/</UriPathToExec>
-      <FileName>Git-2.42.0-64-bit.exe</FileName>
+      <AppTitle></AppTitle>
+      <FileType></FileType>
+      <VersionNo></VersionNo>
+      <SiteDownloadPageLink></SiteDownloadPageLink>
+      <BaseUri></BaseUri>
+      <UriPathToExec></UriPathToExec>
+      <FileName></FileName>
     </SoftwareConfigInfo>
   </FossDownloadData>
 </Configuration>
