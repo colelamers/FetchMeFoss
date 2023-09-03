@@ -14,7 +14,16 @@
       <FileName></FileName>
     </SoftwareConfigInfo>
   EMPTY SECTION REMOVE!!!
-
+  
+    <SoftwareConfigInfo>
+      <AppTitle>Anki</AppTitle>
+      <FileType>exe</FileType>
+      <VersionNo>2.1.66</VersionNo>
+      <SiteDownloadPageLink>https://apps.ankiweb.net/</SiteDownloadPageLink>
+      <BaseUri>https://github.com/</BaseUri>
+      <UriPathToExec>/ankitects/anki/releases/download/2.1.66/</UriPathToExec>
+      <FileName>anki-2.1.66-windows-qt6.exe</FileName>
+    </SoftwareConfigInfo>
     <SoftwareConfigInfo>
       <AppTitle>7z</AppTitle>
       <FileType>exe</FileType>

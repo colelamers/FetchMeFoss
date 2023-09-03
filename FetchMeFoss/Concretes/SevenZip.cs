@@ -26,7 +26,6 @@ namespace FetchMeFoss.Concretes
                 // Assumption that version number is contained within download link
                 if (unparsedExec.Contains(SoftwareItem.VersionNo))
                 {
-                    // todo 4; eventually enable unsecure http?
                     // Finds the file type ending, and the last occurace of https
                     int aSlashIndex = unparsedExec.LastIndexOf("a/");
                     if (aSlashIndex > 0)

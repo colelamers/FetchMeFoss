@@ -19,18 +19,16 @@ namespace FetchMeFoss.Controllers
         public DataTable BuildDataTableFromConfiguration()
         {
             _init.Logger.Log($"BuildDataTableFromConfiguration called...");
-
             _fossTable.Columns.Add("Title");
             _fossTable.Columns.Add("Url");
             _fossTable.Columns.Add("WebPage");
-
             foreach (SoftwareConfigInfo fossDownload in _init.Configuration.FossDownloadData)
             {
-                // Some foss items could have more than one potential download link
-                // todo 2; come back to this at a later date. not concerned with this now.
+                // Some foss items could have more than one potential
+                // download link
                 DataRow dRow = _fossTable.NewRow();
                 dRow["Title"] = fossDownload.AppTitle;
-                // dRow["Url"] = differentFossDownload;
+                dRow["Url"] = fossDownload.BaseUri;
                 dRow["WebPage"] = fossDownload.SiteDownloadPageLink;
                 _fossTable.Rows.Add(dRow);
             }
@@ -58,28 +56,27 @@ namespace FetchMeFoss.Controllers
             }
         }
         // todo 3;
-        private async Task<SoftwareConfigInfo> InitializeWebPageDownload(
-        SoftwareConfigInfo fossDownload)
+        private async Task<SoftwareConfigInfo> 
+            InitializeWebPageDownload(SoftwareConfigInfo fossDownload)
         {
             _init.Logger.Log($"InitializeWebPageDownload called...");
 
             // todo 2; optimize awaits once app is running smoother. 
             // app is ending but then running syncronously
-
             // Force app title .ToLower() for key testing
             Type fossItemType;
             string softwareKey = fossDownload.AppTitle.ToLower().Replace(" ", "");
-            bool isKey = FossObjectConsts.FossItemType.TryGetValue(softwareKey, out fossItemType);
+            bool isKey = FossObjectConsts.FossItemType.TryGetValue(softwareKey, 
+                                                                   out fossItemType);
             _init.Logger.Log($"Key: {softwareKey}");
-
             if (isKey)
             {
                 var fsInterface = (FossInterface)Activator.CreateInstance(
                                   fossItemType, fossDownload, _init);
-
                 if (fsInterface != null)
                 {
-                    // Update Version, perform direct download or html parse for download
+                    // Update Version, direct download first, html parse if that
+                    // fails
                     await fsInterface.ParseForCurrentVersion();
                     bool success = await fsInterface.DownloadWithDirectLink();
                     if (!success)

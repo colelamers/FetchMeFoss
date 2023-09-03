@@ -648,11 +648,3 @@
 2023-08-28 17:05:11.4148 - FossInterface-DownloadWithHtmlParsing called...
 2023-08-28 17:05:11.4152 - FossInterface-ParseHtmlForDownloadLink called...
 2023-08-28 17:05:11.4956 - File downloaded: C:\Users\xen\Downloads\Git-2.42.0-32-bit.exe
-2023-08-28 17:05:51.2735 - FossInterface-DownloadExec called...
-2023-08-28 17:05:51.3371 - DownloadWithHtmlParsing Error, System.InvalidOperationException: An invalid request URI was provided. Either the request URI must be an absolute URI or BaseAddress must be set.
-   at System.Net.Http.HttpClient.PrepareRequestMessage(HttpRequestMessage request)
-   at System.Net.Http.HttpClient.CheckRequestBeforeSend(HttpRequestMessage request)
-   at System.Net.Http.HttpClient.GetStreamAsync(Uri requestUri, CancellationToken cancellationToken)
-   at System.Net.Http.HttpClient.GetStreamAsync(String requestUri)
-   at FetchMeFoss.Models.FossInterface.DownloadExec(HttpClient client, String downloadLink, String downloadPath) in C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\Models\FossInterface.cs:line 111
-   at FetchMeFoss.Models.FossInterface.DownloadWithHtmlParsing() in C:\Users\Xen\source\repos\FetchMeFoss\FetchMeFoss\Models\FossInterface.cs:line 64

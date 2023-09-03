@@ -36,29 +36,36 @@ namespace FetchMeFoss.Models
     public interface FossInterface
     {
         public SoftwareConfigInfo SoftwareItem { get; set; }
-        public Init.Initialization<Configuration> _init { get; protected set;}
+        public Init.Initialization<Configuration> _init { get; protected set; }
         public Regex RgxCustomVersion { get; set; }
         // todo 3;
-        protected async Task<bool> DownloadExec(HttpClient client, string downloadLink, 
-                                                                   string downloadPath)
+        protected async Task<bool> DownloadExec(HttpClient client, string downloadLink,
+                                                string downloadPath)
         {
-            _init.Logger.Log($"FossInterface-DownloadExec called...");
-
-            // todo 2; possibly throw in commonfunctions?
-            using (Stream? fileDownload = await client.GetStreamAsync(downloadLink))
+            try
             {
-                if (File.Exists(downloadPath))
+                _init.Logger.Log($"FossInterface-DownloadExec called...");
+                using (Stream? fileDownload = await client.GetStreamAsync(downloadLink))
                 {
-                    _init.Logger.Log($"File exists! Deleting: {downloadPath}");
-                    File.Delete(downloadPath);
+                    if (File.Exists(downloadPath))
+                    {
+                        _init.Logger.Log($"File exists! Deleting: {downloadPath}");
+                        File.Delete(downloadPath);
+                    }
+
+                    // CreateNew used because I'm concerned of possible
+                    // infinite loop downloads
+                    using (Stream fs = new FileStream(downloadPath, FileMode.CreateNew))
+                    {
+                        // fileDownload.CopyTo(fs);         // synchronous downloads
+                        await fileDownload.CopyToAsync(fs); // asyncronous downloads
+                        fs.Flush();
+                    }
                 }
-                // CreateNew used because I'm concerned of possible infinite loop downloads
-                using (Stream fs = new FileStream(downloadPath, FileMode.CreateNew))
-                {
-                    // fileDownload.CopyTo(fs);         // synchronous downloads
-                    await fileDownload.CopyToAsync(fs); // asyncronous downloads
-                    fs.Flush();
-                }
+            }
+            catch (Exception ex)
+            {
+                _init.Logger.Log("DownloadExec Error", ex);
             }
 
             if (File.Exists(downloadPath))
@@ -92,16 +99,17 @@ namespace FetchMeFoss.Models
         {
             foreach (string unparsedExec in pageExecs)
             {
-                // Assumption that version number is contained within download link
+                // Assumption that version number is
+                // contained within download link
                 if (unparsedExec.Contains(SoftwareItem.VersionNo))
                 {
-                    // Finds the file type ending, and the last occurace of https
+                    // Finds the file type ending, and the
+                    // last occurace of https
                     int httpsIndex = unparsedExec.LastIndexOf("https://");
                     if (httpsIndex > 0)
                     {
                         int substringLength = unparsedExec.Length - httpsIndex;
                         string execHref = unparsedExec.Substring(httpsIndex, substringLength);
-
                         return execHref + SoftwareItem.FileType;
                     }
                 }
@@ -125,22 +133,16 @@ namespace FetchMeFoss.Models
         {
             _init.Logger.Log($"FossInterface-DownloadWithHtmlParsing called...");
             bool fileDownloaded = false;
-            try
+            // Grab download page url info first, else swap out version in
+            // direct link
+            using (HttpClient client = new HttpClient())
             {
-                // Grab download page url info first, else swap out version in direct link
-                using (HttpClient client = new HttpClient())
-                {
-                    Uri currentUrl = new Uri(this.SoftwareItem.SiteDownloadPageLink);
-                    string downloadLink = await ParseHtmlForDownloadLink(client);
-                    string fileName = Path.GetFileNameWithoutExtension(downloadLink);
-                    string extension = Path.GetExtension(downloadLink);
-                    string downloadPath = _init.Configuration.DownloadPath + fileName + extension;
-                    fileDownloaded = await DownloadExec(client, downloadLink, downloadPath);
-                }
-            }
-            catch (Exception ex)
-            {
-                _init.Logger.Log("DownloadWithHtmlParsing Error", ex);
+                Uri currentUrl = new Uri(this.SoftwareItem.SiteDownloadPageLink);
+                string downloadLink = await ParseHtmlForDownloadLink(client);
+                string fileName = Path.GetFileNameWithoutExtension(downloadLink);
+                string extension = Path.GetExtension(downloadLink);
+                string downloadPath = _init.Configuration.DownloadPath + fileName + extension;
+                fileDownloaded = await DownloadExec(client, downloadLink, downloadPath);
             }
             return fileDownloaded;
         }
@@ -149,7 +151,6 @@ namespace FetchMeFoss.Models
         {
             _init.Logger.Log($"FossInterface-DownloadWithDirectLink called...");
             bool fileDownloaded = false;
-
             if (string.IsNullOrWhiteSpace(SoftwareItem.BaseUri) ||
                 string.IsNullOrWhiteSpace(SoftwareItem.UriPathToExec) ||
                 string.IsNullOrWhiteSpace(SoftwareItem.FileName))
@@ -158,40 +159,31 @@ namespace FetchMeFoss.Models
                 return false;
             }
 
-            try
+            // Grab download page url info first, else swap out version in direct link
+            using (HttpClient client = new HttpClient())
             {
-                // Grab download page url info first, else swap out version in direct link
-                using (HttpClient client = new HttpClient())
-                {
-                    string downloadPath = _init.Configuration.DownloadPath +
-                                          this.SoftwareItem.FileName;
-                    fileDownloaded = await DownloadExec(
-                                     client, this.SoftwareItem.FullLink, downloadPath);
-                }
-            }
-            catch (Exception ex)
-            {
-                _init.Logger.Log("DownloadWithDirectLink Error", ex);
+                string downloadPath = _init.Configuration.DownloadPath +
+                                      this.SoftwareItem.FileName;
+                fileDownloaded = await DownloadExec(client, this.SoftwareItem.FullLink, 
+                                                    downloadPath);
             }
             return fileDownloaded;
         }
         // todo 3;
-        // todo 2; this can use some serious refactoring
         public async Task ParseForCurrentVersion()
         {
             _init.Logger.Log($"FossInterface-ParseForCurrentVersion called...");
-
             using (HttpClient client = new HttpClient())
             {
                 // Default if none set
                 if (RgxCustomVersion == null)
                 {
                     // Mandatory #.#; more or less numbers and additional versions
-                    RgxCustomVersion = new Regex("([0-9]+[0-9]?[0-9]?[0-9]?" +
-                                                 "\\.[0-9]+[0-9]?[0-9]?[0-9]?" +
-                                                 "\\.?[0-9]?[0-9]?[0-9]?[0-9]?" +
-                                                 "\\.?[0-9]?[0-9]?[0-9]?[0-9]?)",
-                                                 RegexOptions.IgnoreCase);
+                    RgxCustomVersion = new Regex("([0-9]+[0-9]?[0-9]?[0-9]?\\.+" +
+                                                 "[0-9]+[0-9]?[0-9]?[0-9]?\\." +
+                                                 "[0-9]?[0-9]?[0-9]?[0-9]?" +
+                                                 "(?=[.][0-9]*))",
+                                                  RegexOptions.IgnoreCase);
                 }
 
                 // Search for first version number
@@ -203,7 +195,7 @@ namespace FetchMeFoss.Models
                 foreach (string whichVersion in htmlWithVersionInfo)
                 {
                     // Verified all values were numbers, ensuring it's a version
-                    bool isItAVersion = CommonFunctions.ParseStringAsVersionNo(whichVersion);
+                    bool isItAVersion = ParseStringAsVersionNo(whichVersion);
                     if (isItAVersion)
                     {
                         string fetchedVersionNo = whichVersion;
@@ -217,6 +209,30 @@ namespace FetchMeFoss.Models
                     }
                 }
             }
+        }
+        // todo 3;
+        public static bool ParseStringAsVersionNo(string stringWithVersionNumber)
+        {
+            bool isPossibleVersion = false;
+            string[] versionSplit = stringWithVersionNumber.Split(
+                                    ".", StringSplitOptions.RemoveEmptyEntries);
+
+            // Verify all split values are numbers, if not,
+            // it's not a VerisonNo
+            foreach (string number in versionSplit)
+            {
+                int isNum;
+                if (int.TryParse(number, out isNum))
+                {
+                    isPossibleVersion = true;
+                }
+                else
+                {
+                    isPossibleVersion = false;
+                    break;
+                }
+            }
+            return isPossibleVersion;
         }
     }
 }

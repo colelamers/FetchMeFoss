@@ -12,7 +12,7 @@ namespace FetchMeFoss.Models
             {"7z", typeof(SevenZip) },
             {"sevenzip", typeof(SevenZip) },
            // {"ableton", typeof(Ableton) },
-           // {"anki", typeof(Anki) },
+            {"anki", typeof(Anki) },
            // {"audacious", typeof(Audacious) },
            // {"autohotkey", typeof(AutoHotkey) },
            // {"ahk", typeof(AutoHotkey) },

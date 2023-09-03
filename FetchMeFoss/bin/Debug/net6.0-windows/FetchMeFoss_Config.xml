@@ -3,13 +3,13 @@
   <DownloadPath>C:\Users\xen\Downloads\</DownloadPath>
   <FossDownloadData>
     <SoftwareConfigInfo>
-      <AppTitle></AppTitle>
-      <FileType></FileType>
-      <VersionNo></VersionNo>
-      <SiteDownloadPageLink></SiteDownloadPageLink>
-      <BaseUri></BaseUri>
-      <UriPathToExec></UriPathToExec>
-      <FileName></FileName>
+      <AppTitle>Anki</AppTitle>
+      <FileType>exe</FileType>
+      <VersionNo>2.1.66</VersionNo>
+      <SiteDownloadPageLink>https://apps.ankiweb.net/</SiteDownloadPageLink>
+      <BaseUri>https://github.com/</BaseUri>
+      <UriPathToExec>/ankitects/anki/releases/download/2.1.66/</UriPathToExec>
+      <FileName>anki-2.1.66-windows-qt6.exe</FileName>
     </SoftwareConfigInfo>
   </FossDownloadData>
 </Configuration>
