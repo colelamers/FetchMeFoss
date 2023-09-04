@@ -162,7 +162,8 @@ namespace FetchMeFoss.Models
             using (HttpClient client = new HttpClient())
             {
                 string downloadPath = _init.Configuration.DownloadPath +
-                                      this.SoftwareItem.FileName;
+                                      this.SoftwareItem.FileName + "." + 
+                                      this.SoftwareItem.FileType;
                 fileDownloaded = await DownloadExec(client, this.SoftwareItem.FullLink, 
                                                     downloadPath);
             }

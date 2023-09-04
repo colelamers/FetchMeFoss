@@ -16,5 +16,6 @@ namespace FetchMeFoss.Concretes
             SoftwareItem = sci;
             _init = initialization;
         }
+        // todo 1; date based version, but should be first link
     }
 }

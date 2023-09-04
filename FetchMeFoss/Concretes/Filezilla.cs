@@ -16,5 +16,6 @@ namespace FetchMeFoss.Concretes
             SoftwareItem = sci;
             _init = initialization;
         }
+        // todo 1; need to find last one in list cause it's an open directory
     }
 }

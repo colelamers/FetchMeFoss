@@ -16,5 +16,6 @@ namespace FetchMeFoss.Concretes
             SoftwareItem = sci;
             _init = initialization;
         }
+        // todo 1; keepass has issues big time with html parsing
     }
 }
