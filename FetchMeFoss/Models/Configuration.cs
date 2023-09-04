@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FetchMeFoss.Models
+﻿namespace FetchMeFoss.Models
 {
     // todo 3;
     public class Configuration

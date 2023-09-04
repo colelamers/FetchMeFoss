@@ -4,17 +4,18 @@ using System.Text.RegularExpressions;
 
 namespace FetchMeFoss.Concretes
 {
-    public class Anki : FossInterface
-    {
+    public class Audacious : FossInterface
+    { 
         public SoftwareConfigInfo SoftwareItem { get; set; }
         public Init.Initialization<Configuration> _init { get; set; }
         public Regex RgxCustomVersion { get; set; }
 
         // Default Constructor
-        public Anki(SoftwareConfigInfo sci, Init.Initialization<Configuration> initialization)
+        public Audacious(SoftwareConfigInfo sci, Init.Initialization<Configuration> initialization)
         {
             SoftwareItem = sci;
             _init = initialization;
         }
+        // todo 1; gonna need a special html parse cause the link is an open directory. search by version number?!?!?
     }
 }

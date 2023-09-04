@@ -38,7 +38,6 @@ namespace FetchMeFoss
         // todo 3;
         private async void btnDownload_Click(object sender, EventArgs e)
         {
-            // todo 2; asnyc void for this? no idea if it'll work
             EnableDisableFields(false);
             //_proc.CompareCurrentTableWithConfig((DataTable)dgvFossInfo.DataSource);
             await _proc.BeginDownload();

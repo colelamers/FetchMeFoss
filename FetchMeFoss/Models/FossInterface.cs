@@ -137,7 +137,6 @@ namespace FetchMeFoss.Models
             // direct link
             using (HttpClient client = new HttpClient())
             {
-                Uri currentUrl = new Uri(this.SoftwareItem.SiteDownloadPageLink);
                 string downloadLink = await ParseHtmlForDownloadLink(client);
                 string fileName = Path.GetFileNameWithoutExtension(downloadLink);
                 string extension = Path.GetExtension(downloadLink);
@@ -191,17 +190,18 @@ namespace FetchMeFoss.Models
                 string rawHtml = await client.GetStringAsync(currentUrl);
                 string[] htmlWithVersionInfo = RgxCustomVersion.Split(rawHtml);
 
-                // Assumption is the first "version" found is the most recent; desc order
+                // Assumption is the first "version" found is the most recent
+                // In descending order
                 foreach (string whichVersion in htmlWithVersionInfo)
                 {
                     // Verified all values were numbers, ensuring it's a version
                     bool isItAVersion = ParseStringAsVersionNo(whichVersion);
                     if (isItAVersion)
                     {
+                        // Remove last char if it is a period in the string
                         string fetchedVersionNo = whichVersion;
-                        if (fetchedVersionNo[fetchedVersionNo.Length - 1] == '.')
+                        if (fetchedVersionNo[fetchedVersionNo.Length - 1].Equals("."))
                         {
-                            // Chop off period at end in case it exists
                             fetchedVersionNo = whichVersion.Remove(whichVersion.Length - 1);
                         }
                         UpdateSoftwareConfigInfo(fetchedVersionNo);

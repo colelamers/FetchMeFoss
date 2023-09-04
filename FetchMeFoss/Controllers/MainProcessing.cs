@@ -42,9 +42,9 @@ namespace FetchMeFoss.Controllers
             try
             {
                 var downloadTasks = new List<Task<SoftwareConfigInfo>>();
-                foreach (SoftwareConfigInfo fossDownload in _init.Configuration.FossDownloadData)
+                foreach (SoftwareConfigInfo sci in _init.Configuration.FossDownloadData)
                 {
-                    downloadTasks.Add(InitializeWebPageDownload(fossDownload));
+                    downloadTasks.Add(InitializeWebPageDownload(sci));
                 }
                 var updatedSoftwareItems = await Task.WhenAll(downloadTasks);
                 _init.Configuration.FossDownloadData = updatedSoftwareItems.ToList();
@@ -57,46 +57,68 @@ namespace FetchMeFoss.Controllers
         }
         // todo 3;
         private async Task<SoftwareConfigInfo> 
-            InitializeWebPageDownload(SoftwareConfigInfo fossDownload)
+            InitializeWebPageDownload(SoftwareConfigInfo sci)
         {
             _init.Logger.Log($"InitializeWebPageDownload called...");
 
-            // todo 2; optimize awaits once app is running smoother. 
-            // app is ending but then running syncronously
+            // todo 4; optimize awaits once app is running smoother. app is ending but then running syncronously
+
             // Force app title .ToLower() for key testing
-            Type fossItemType;
-            string softwareKey = fossDownload.AppTitle.ToLower().Replace(" ", "");
-            bool isKey = FossObjectConsts.FossItemType.TryGetValue(softwareKey, 
-                                                                   out fossItemType);
+            Type fossType;
+            string softwareKey = sci.AppTitle.ToLower().Replace(" ", "");
+            bool isKey = FossObjectConsts.FossItemType.TryGetValue(softwareKey, out fossType);
             _init.Logger.Log($"Key: {softwareKey}");
             if (isKey)
             {
-                var fsInterface = (FossInterface)Activator.CreateInstance(
-                                  fossItemType, fossDownload, _init);
-                if (fsInterface != null)
+                FossInterface fi = (FossInterface)Activator.CreateInstance(fossType, sci, _init);
+                if (fi != null)
                 {
-                    // Update Version, direct download first, html parse if that
-                    // fails
-                    await fsInterface.ParseForCurrentVersion();
-                    bool success = await fsInterface.DownloadWithDirectLink();
-                    if (!success)
-                    {
-                        success = await fsInterface.DownloadWithHtmlParsing();
-                    }
-
-                    // Pass by reference to update VersionInfo so it can update
-                    // the config file if the download succeeded.
-                    if (success)
-                    {
-                        fossDownload = fsInterface.SoftwareItem;
-                    }
+                    // todo 1; test this!!! recently added 2023/09/03
+                    sci = await DownloadingItem(sci, fi);
                 }
             }
             else
             {
                 _init.Logger.Log($"Key not found {softwareKey}");
             }
-            return fossDownload;
+            return sci;
+        }
+        // todo 3;
+        private async Task<SoftwareConfigInfo>
+            DownloadingItem(SoftwareConfigInfo sci, FossInterface fi)
+        {
+            // Check if version info even exists. If not, it means
+            // that the software download doesn't contain the version
+            // info in it's filename. 
+            if (!string.IsNullOrWhiteSpace(sci.VersionNo))
+            {
+                await fi.ParseForCurrentVersion();
+            }
+
+            // todo 1; capture these successes below with a text file getting updated issue a textfile report after download completion
+
+            // Attempt direct download page first
+            bool success = await fi.DownloadWithDirectLink();
+            if (!success)
+            {
+                // If direct download failed, then attempt an html
+                // parse on the download page if one exists.
+                // 
+                // Empty can mean either one does not exist, it's a
+                // CDN, or it's locked behind an account log in.
+                if (!string.IsNullOrWhiteSpace(sci.SiteDownloadPageLink))
+                {
+                    success = await fi.DownloadWithHtmlParsing();
+                }
+            }
+
+            // Pass by reference to update VersionInfo so it can update
+            // the config file if the download succeeded.
+            if (success)
+            {
+                sci = fi.SoftwareItem;
+            }
+            return sci;
         }
     }
 }
