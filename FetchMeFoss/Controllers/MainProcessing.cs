@@ -42,8 +42,10 @@ namespace FetchMeFoss.Controllers
             try
             {
                 var downloadTasks = new List<Task<SoftwareConfigInfo>>();
-                foreach (SoftwareConfigInfo sci in _init.Configuration.FossDownloadData)
+                for (int i = 0; i < _init.Configuration.FossDownloadData.Count; ++i)
                 {
+                    _init.Logger.Log($"Index:{i}");
+                    SoftwareConfigInfo sci = _init.Configuration.FossDownloadData[i];
                     downloadTasks.Add(InitializeWebPageDownload(sci));
                 }
                 var updatedSoftwareItems = await Task.WhenAll(downloadTasks);
