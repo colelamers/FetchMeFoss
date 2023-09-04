@@ -317,41 +317,6 @@
             <UriPathToExec>/job/Okular_Release_win64/lastSuccessfulBuild/artifact/</UriPathToExec>
             <FileName>okular-23.08.0-1506-windows-cl-msvc2019-x86_64</FileName>
         </SoftwareConfigInfo>
-        <SoftwareConfigInfo>
-            <AppTitle>Anki</AppTitle>
-            <FileType>exe</FileType>
-            <VersionNo>2.1.66</VersionNo>
-            <SiteDownloadPageLink>https://apps.ankiweb.net/</SiteDownloadPageLink>
-            <BaseUri>https://github.com/</BaseUri>
-            <UriPathToExec>/ankitects/anki/releases/download/2.1.66/</UriPathToExec>
-            <FileName>anki-2.1.66-windows-qt6.exe</FileName>
-        </SoftwareConfigInfo>
-        <SoftwareConfigInfo>
-            <AppTitle>7z</AppTitle>
-            <FileType>exe</FileType>
-            <VersionNo>2301</VersionNo>
-            <SiteDownloadPageLink>https://www.7-zip.org/download.html</SiteDownloadPageLink>
-            <BaseUri>https://www.7-zip.org</BaseUri>
-            <UriPathToExec>/a/</UriPathToExec>
-            <FileName>7z2301-x64.exe</FileName>
-        </SoftwareConfigInfo>
-        <SoftwareConfigInfo>
-            <AppTitle>Git</AppTitle>
-            <FileType>exe</FileType>
-            <VersionNo>2.42.0</VersionNo>
-            <SiteDownloadPageLink>https://git-scm.com/download/win</SiteDownloadPageLink>
-            <BaseUri>https://github.com</BaseUri>
-            <UriPathToExec>/git-for-windows/git/releases/download/v2.42.0.windows.1/</UriPathToExec>
-            <FileName>Git-2.42.0-64-bit.exe</FileName>
-        </SoftwareConfigInfo>
-        <SoftwareConfigInfo>
-            <AppTitle>Krita</AppTitle>
-            <FileType>exe</FileType>
-            <VersionNo>5.1.5</VersionNo>
-            <SiteDownloadPageLink>https://krita.org/en/download/krita-desktop/</SiteDownloadPageLink>
-            <BaseUri>https://mirrors.mit.edu</BaseUri>
-            <UriPathToExec>/kde/stable/krita/5.1.5/</UriPathToExec>
-            <FileName>krita-x64-5.1.5-setup.exe</FileName>
-        </SoftwareConfigInfo>
+
     </FossDownloadData>
 </Configuration>

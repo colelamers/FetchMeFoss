@@ -318,13 +318,247 @@
             <FileName>okular-23.08.0-1506-windows-cl-msvc2019-x86_64</FileName>
         </SoftwareConfigInfo>
         <SoftwareConfigInfo>
+            <AppTitle>MicrosoftTeams</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>1.6.00.22378</VersionNo>
+            <SiteDownloadPageLink/>
+            <BaseUri>https://statics.teams.cdn.office.net/</BaseUri>
+            <UriPathToExec>/production-windows/1.6.00.22378/</UriPathToExec>
+            <FileName>TeamsSetup</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>Mp3Tag</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>322</VersionNo>
+            <SiteDownloadPageLink>https://www.mp3tag.de/en/download.html</SiteDownloadPageLink>
+            <BaseUri>https://download.mp3tag.de/</BaseUri>
+            <UriPathToExec>/</UriPathToExec>
+            <FileName>mp3tagv322-x64-setup.exe</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>NativeInstruments</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>2</VersionNo>
+            <SiteDownloadPageLink>https://www.native-instruments.com/en/specials/native-access-2/</SiteDownloadPageLink>
+            <BaseUri>https://www.native-instruments.com/</BaseUri>
+            <UriPathToExec>/fileadmin/downloads/</UriPathToExec>
+            <FileName>Native-Access_2</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>NodeJs</AppTitle>
+            <FileType>msi</FileType>
+            <VersionNo>18.17.1</VersionNo>
+            <SiteDownloadPageLink>https://nodejs.org/en/download</SiteDownloadPageLink>
+            <BaseUri>https://nodejs.org/</BaseUri>
+            <UriPathToExec>/dist/v18.17.1/</UriPathToExec>
+            <FileName>node-v18.17.1-x64</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>NotepadPlusPlus</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>8.5.6</VersionNo>
+            <SiteDownloadPageLink>https://github.com/notepad-plus-plus/notepad-plus-plus/releases/</SiteDownloadPageLink>
+            <BaseUri>https://github.com/</BaseUri>
+            <UriPathToExec>notepad-plus-plus/notepad-plus-plus/releases/download/v8.5.6/</UriPathToExec>
+            <FileName>npp.8.5.6.Installer.x64</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>NvidiaDrivers</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>537.13</VersionNo>
+            <SiteDownloadPageLink>https://www.nvidia.com/download/driverResults.aspx/210648/</SiteDownloadPageLink>
+            <BaseUri>https://us.download.nvidia.com/</BaseUri>
+            <UriPathToExec>/Windows/537.13/</UriPathToExec>
+            <FileName>537.13-desktop-win10-win11-64bit-international-dch-whql</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>OpenBroadcastSoftware</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>29.1.3</VersionNo>
+            <SiteDownloadPageLink>https://obsproject.com/download</SiteDownloadPageLink>
+            <BaseUri>https://cdn-fastly.obsproject.com/</BaseUri>
+            <UriPathToExec>/downloads/</UriPathToExec>
+            <FileName>OBS-Studio-29.1.3-Full-Installer-x64</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>OpenHardwareMonitor</AppTitle>
+            <FileType>zip</FileType>
+            <VersionNo>0.9.6</VersionNo>
+            <SiteDownloadPageLink>https://openhardwaremonitor.org/downloads/</SiteDownloadPageLink>
+            <BaseUri>https://openhardwaremonitor.org/</BaseUri>
+            <UriPathToExec>/files/</UriPathToExec>
+            <FileName>openhardwaremonitor-v0.9.6</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>OpenShot</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>3.1.1</VersionNo>
+            <SiteDownloadPageLink>https://github.com/OpenShot/openshot-qt/releases</SiteDownloadPageLink>
+            <BaseUri>https://github.com/</BaseUri>
+            <UriPathToExec>/OpenShot/openshot-qt/releases/download/v3.1.1/</UriPathToExec>
+            <FileName>OpenShot-v3.1.1-x86_64</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>Opera</AppTitle>
+            <FileType/>
+            <VersionNo/>
+            <SiteDownloadPageLink/>
+            <BaseUri>https://net.geo.opera.com/</BaseUri>
+            <UriPathToExec>opera/stable/windows</UriPathToExec>
+            <FileName/>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>Pdfsam</AppTitle>
+            <FileType>msi</FileType>
+            <VersionNo>5.1.3</VersionNo>
+            <SiteDownloadPageLink>https://github.com/torakiki/pdfsam/releases</SiteDownloadPageLink>
+            <BaseUri>https://github.com/</BaseUri>
+            <UriPathToExec>/torakiki/pdfsam/releases/download/v5.1.3/</UriPathToExec>
+            <FileName>pdfsam-5.1.3</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>Python</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>3.11.5</VersionNo>
+            <SiteDownloadPageLink>https://www.python.org/downloads/release/python-3115/</SiteDownloadPageLink>
+            <BaseUri>https://www.python.org/</BaseUri>
+            <UriPathToExec>/ftp/python/3.11.5/</UriPathToExec>
+            <FileName>python-3.11.5-amd64</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>Rufus</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>4.2</VersionNo>
+            <SiteDownloadPageLink>https://github.com/pbatard/rufus/releases</SiteDownloadPageLink>
+            <BaseUri>https://github.com/</BaseUri>
+            <UriPathToExec>pbatard/rufus/releases/download/v4.2/</UriPathToExec>
+            <FileName>rufus-4.2</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>Scribus</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>1.4.6</VersionNo>
+            <SiteDownloadPageLink>https://wiki.scribus.net/canvas/Download</SiteDownloadPageLink>
+            <BaseUri>https://newcontinuum.dl.sourceforge.net/</BaseUri>
+            <UriPathToExec>project/scribus/scribus/1.4.6/</UriPathToExec>
+            <FileName>scribus-1.4.6-windows-x64</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>Steam</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo/>
+            <SiteDownloadPageLink>https://store.steampowered.com/about/</SiteDownloadPageLink>
+            <BaseUri>https://cdn.cloudflare.steamstatic.com/</BaseUri>
+            <UriPathToExec>/client/installer/</UriPathToExec>
+            <FileName>SteamSetup</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>Sumatra</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>3.4.6</VersionNo>
+            <SiteDownloadPageLink>https://www.sumatrapdfreader.org/download-free-pdf-viewer</SiteDownloadPageLink>
+            <BaseUri>https://www.sumatrapdfreader.org/</BaseUri>
+            <UriPathToExec>/dl/rel/3.4.6/</UriPathToExec>
+            <FileName>SumatraPDF-3.4.6-64-install</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>Thunderbird</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>115.2.0</VersionNo>
+            <SiteDownloadPageLink>https://download.mozilla.org/?product=thunderbird-115.2.0-SSL&amp;os=win64&amp;lang=en-US</SiteDownloadPageLink>
+            <BaseUri>https://download-installer.cdn.mozilla.net/</BaseUri>
+            <UriPathToExec>/pub/thunderbird/releases/115.2.0/win64/en-US/</UriPathToExec>
+            <FileName>Thunderbird%20Setup%20115.2.0</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>Tor</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>12.5.3</VersionNo>
+            <SiteDownloadPageLink>https://www.torproject.org/download/</SiteDownloadPageLink>
+            <BaseUri>https://www.torproject.org/</BaseUri>
+            <UriPathToExec>/dist/torbrowser/12.5.3/</UriPathToExec>
+            <FileName>torbrowser-install-win64-12.5.3_ALL</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>UbisoftConnect</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo/>
+            <SiteDownloadPageLink/>
+            <BaseUri>https://static3.cdn.ubi.com/</BaseUri>
+            <UriPathToExec>/orbit/launcher_installer/</UriPathToExec>
+            <FileName>UbisoftConnectInstaller</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>VirtualBox</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>7.0.10</VersionNo>
+            <SiteDownloadPageLink>https://www.virtualbox.org/wiki/Downloads</SiteDownloadPageLink>
+            <BaseUri>https://download.virtualbox.org/</BaseUri>
+            <UriPathToExec>/virtualbox/7.0.10/</UriPathToExec>
+            <FileName>VirtualBox-7.0.10-158379-Win</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>Vlc</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>3.0.18</VersionNo>
+            <SiteDownloadPageLink>https://www.videolan.org/vlc/download-windows.html</SiteDownloadPageLink>
+            <BaseUri>https://get.videolan.org/</BaseUri>
+            <UriPathToExec>/vlc/3.0.18/win32/</UriPathToExec>
+            <FileName>vlc-3.0.18-win32</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>Vnc</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>7.6.0</VersionNo>
+            <SiteDownloadPageLink>https://www.realvnc.com/en/connect/download/viewer/</SiteDownloadPageLink>
+            <BaseUri>https://downloads.realvnc.com/</BaseUri>
+            <UriPathToExec>/download/file/viewer.files/</UriPathToExec>
+            <FileName>VNC-Viewer-7.6.0-Windows</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>VsCode</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>1.81.1</VersionNo>
+            <SiteDownloadPageLink>https://code.visualstudio.com/download</SiteDownloadPageLink>
+            <BaseUri>https://az764295.vo.msecnd.net/</BaseUri>
+            <UriPathToExec>/stable/6c3e3dba23e8fadc360aed75ce363ba185c49794/</UriPathToExec>
+            <FileName>VSCodeUserSetup-x64-1.81.1</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>WinDirStat</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>1.1.2</VersionNo>
+            <SiteDownloadPageLink>https://sourceforge.net/projects/windirstat/files/windirstat/1.1.2%20installer%20re-release%20%28more%20languages%21%29/windirstat1_1_2_setup.exe/download</SiteDownloadPageLink>
+            <BaseUri>https://sourceforge.net/</BaseUri>
+            <UriPathToExec>/projects/windirstat/files/windirstat/1.1.2%20installer%20re-release%20%28more%20languages%21%29/</UriPathToExec>
+            <FileName>windirstat1_1_2_setup</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>WinScp</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>6.1.1</VersionNo>
+            <SiteDownloadPageLink>https://winscp.net/eng/download.php</SiteDownloadPageLink>
+            <BaseUri>https://winscp.net/</BaseUri>
+            <UriPathToExec>/download/</UriPathToExec>
+            <FileName>WinSCP-6.1.1-Setup</FileName>
+        </SoftwareConfigInfo>
+        <SoftwareConfigInfo>
+            <AppTitle>CoreTemp</AppTitle>
+            <FileType>exe</FileType>
+            <VersionNo>1.18</VersionNo>
+            <SiteDownloadPageLink>https://www.alcpu.com/CoreTemp/</SiteDownloadPageLink>
+            <BaseUri>https://www.alcpu.com/</BaseUri>
+            <UriPathToExec>/CoreTemp/</UriPathToExec>
+            <FileName>Core-Temp-setup</FileName>
+        </SoftwareConfigInfo>
+                <SoftwareConfigInfo>
             <AppTitle>Anki</AppTitle>
             <FileType>exe</FileType>
             <VersionNo>2.1.66</VersionNo>
             <SiteDownloadPageLink>https://apps.ankiweb.net/</SiteDownloadPageLink>
             <BaseUri>https://github.com/</BaseUri>
             <UriPathToExec>/ankitects/anki/releases/download/2.1.66/</UriPathToExec>
-            <FileName>anki-2.1.66-windows-qt6</FileName>
+            <FileName>anki-2.1.66-windows-qt6.exe</FileName>
         </SoftwareConfigInfo>
         <SoftwareConfigInfo>
             <AppTitle>7z</AppTitle>
@@ -333,7 +567,7 @@
             <SiteDownloadPageLink>https://www.7-zip.org/download.html</SiteDownloadPageLink>
             <BaseUri>https://www.7-zip.org</BaseUri>
             <UriPathToExec>/a/</UriPathToExec>
-            <FileName>7z2301-x64</FileName>
+            <FileName>7z2301-x64.exe</FileName>
         </SoftwareConfigInfo>
         <SoftwareConfigInfo>
             <AppTitle>Git</AppTitle>
@@ -342,7 +576,7 @@
             <SiteDownloadPageLink>https://git-scm.com/download/win</SiteDownloadPageLink>
             <BaseUri>https://github.com</BaseUri>
             <UriPathToExec>/git-for-windows/git/releases/download/v2.42.0.windows.1/</UriPathToExec>
-            <FileName>Git-2.42.0-64-bit</FileName>
+            <FileName>Git-2.42.0-64-bit.exe</FileName>
         </SoftwareConfigInfo>
         <SoftwareConfigInfo>
             <AppTitle>Krita</AppTitle>
@@ -351,7 +585,7 @@
             <SiteDownloadPageLink>https://krita.org/en/download/krita-desktop/</SiteDownloadPageLink>
             <BaseUri>https://mirrors.mit.edu</BaseUri>
             <UriPathToExec>/kde/stable/krita/5.1.5/</UriPathToExec>
-            <FileName>krita-x64-5.1.5-setup</FileName>
+            <FileName>krita-x64-5.1.5-setup.exe</FileName>
         </SoftwareConfigInfo>
     </FossDownloadData>
 </Configuration>
