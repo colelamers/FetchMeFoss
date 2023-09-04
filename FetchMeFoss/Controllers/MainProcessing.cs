@@ -18,19 +18,17 @@ namespace FetchMeFoss.Controllers
         // todo 3;
         public DataTable BuildDataTableFromConfiguration()
         {
-            _init.Logger.Log("BuildDataTableFromConfiguration called...");
-
+            _init.Logger.Log($"BuildDataTableFromConfiguration called...");
             _fossTable.Columns.Add("Title");
             _fossTable.Columns.Add("Url");
             _fossTable.Columns.Add("WebPage");
-
             foreach (SoftwareConfigInfo fossDownload in _init.Configuration.FossDownloadData)
             {
-                // Some foss items could have more than one potential download link
-                // todo 2; come back to this at a later date. not concerned with this now.
+                // Some foss items could have more than one potential
+                // download link
                 DataRow dRow = _fossTable.NewRow();
                 dRow["Title"] = fossDownload.AppTitle;
-                // dRow["Url"] = differentFossDownload;
+                dRow["Url"] = fossDownload.BaseUri;
                 dRow["WebPage"] = fossDownload.SiteDownloadPageLink;
                 _fossTable.Rows.Add(dRow);
             }
@@ -40,13 +38,13 @@ namespace FetchMeFoss.Controllers
         // todo 4; rename to something more dynamic like "building async functions?"
         public async Task BeginDownload()
         {
-            _init.Logger.Log("BeginDownload called...");
+            _init.Logger.Log($"BeginDownload called...");
             try
             {
                 var downloadTasks = new List<Task<SoftwareConfigInfo>>();
-                foreach (SoftwareConfigInfo fossDownload in _init.Configuration.FossDownloadData)
+                foreach (SoftwareConfigInfo sci in _init.Configuration.FossDownloadData)
                 {
-                    downloadTasks.Add(DownloadExecutable(fossDownload));
+                    downloadTasks.Add(InitializeWebPageDownload(sci));
                 }
                 var updatedSoftwareItems = await Task.WhenAll(downloadTasks);
                 _init.Configuration.FossDownloadData = updatedSoftwareItems.ToList();
@@ -58,38 +56,69 @@ namespace FetchMeFoss.Controllers
             }
         }
         // todo 3;
-        private async Task<SoftwareConfigInfo> DownloadExecutable(SoftwareConfigInfo fossDownload)
+        private async Task<SoftwareConfigInfo> 
+            InitializeWebPageDownload(SoftwareConfigInfo sci)
         {
-            _init.Logger.Log("DownloadExecutable called...");
-            Type fossItemType;
-            string softwareKey = fossDownload.AppTitle.ToLower().Replace(" ", "");
-            bool isKey = FossDataConstants.FossItemType.TryGetValue(softwareKey, out fossItemType);
+            _init.Logger.Log($"InitializeWebPageDownload called...");
+
+            // todo 4; optimize awaits once app is running smoother. app is ending but then running syncronously
+
+            // Force app title .ToLower() for key testing
+            Type fossType;
+            string softwareKey = sci.AppTitle.ToLower().Replace(" ", "");
+            bool isKey = FossObjectConsts.FossItemType.TryGetValue(softwareKey, out fossType);
+            _init.Logger.Log($"Key: {softwareKey}");
             if (isKey)
             {
-                var fsInterface = (FossInterface)Activator.CreateInstance(
-                                  fossItemType, fossDownload, _init);
-
-                if (fsInterface != null)
+                FossInterface fi = (FossInterface)Activator.CreateInstance(fossType, sci, _init);
+                if (fi != null)
                 {
-                    // todo 2; optimize awaits once app is running smoother. 
-                    // app is ending but then running syncronously
-                    var success = await fsInterface.DownloadWithDirectLink();
-                    if (!success)
-                    {
-                        success = await fsInterface.DownloadWithHtmlParsing();
-                    }
+                    // todo 1; test this!!! recently added 2023/09/03
+                    sci = await DownloadingItem(sci, fi);
+                }
+            }
+            else
+            {
+                _init.Logger.Log($"Key not found {softwareKey}");
+            }
+            return sci;
+        }
+        // todo 3;
+        private async Task<SoftwareConfigInfo>
+            DownloadingItem(SoftwareConfigInfo sci, FossInterface fi)
+        {
+            // Check if version info even exists. If not, it means
+            // that the software download doesn't contain the version
+            // info in it's filename. 
+            if (!string.IsNullOrWhiteSpace(sci.VersionNo))
+            {
+                await fi.ParseForCurrentVersion();
+            }
 
-                    // Pass by reference after interface updates VersionInfo.
-                    // This is so we can update the config file later.
-                    // Only if download succeeds will we do this
-                    if (success)
-                    {
-                        fossDownload = fsInterface.SoftwareItem;
-                    }
+            // todo 1; capture these successes below with a text file getting updated issue a textfile report after download completion
+
+            // Attempt direct download page first
+            bool success = await fi.DownloadWithDirectLink();
+            if (!success)
+            {
+                // If direct download failed, then attempt an html
+                // parse on the download page if one exists.
+                // 
+                // Empty can mean either one does not exist, it's a
+                // CDN, or it's locked behind an account log in.
+                if (!string.IsNullOrWhiteSpace(sci.SiteDownloadPageLink))
+                {
+                    success = await fi.DownloadWithHtmlParsing();
                 }
             }
 
-            return fossDownload;
+            // Pass by reference to update VersionInfo so it can update
+            // the config file if the download succeeded.
+            if (success)
+            {
+                sci = fi.SoftwareItem;
+            }
+            return sci;
         }
     }
 }
